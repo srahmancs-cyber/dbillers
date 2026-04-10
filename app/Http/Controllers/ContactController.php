@@ -17,13 +17,20 @@ class ContactController extends Controller
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:20',
             'message' => 'required|string',
+            'selected_challenges' => 'nullable|string',
         ]);
+
+        // Append challenges to message if present
+        $finalMessage = $validated['message'];
+        if (!empty($validated['selected_challenges'])) {
+            $finalMessage .= "\n\n--- Selected Challenges ---\n" . str_replace(', ', "\n• ", $validated['selected_challenges']);
+        }
 
         $lead = ContactLead::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
-            'message' => $validated['message'],
+            'message' => $finalMessage,
             'status' => 'unread',
         ]);
 
@@ -36,6 +43,7 @@ class ContactController extends Controller
         // Send auto-reply to user
         Mail::to($lead->email)->send(new ContactAutoReply($lead));
 
-        return redirect()->route('contact')->with('success', 'Thank you for contacting us. We will get back to you within 24 hours.');
+        // Redirect back to home with success message
+        return redirect()->back()->with('success', 'Thank you for contacting us. We will get back to you within 24 hours.');
     }
 }

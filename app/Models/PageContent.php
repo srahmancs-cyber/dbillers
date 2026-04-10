@@ -14,6 +14,6 @@ class PageContent extends Model
     ];
 
     protected $casts = [
-        'is_active' => 'boolean',
+        'metadata' => 'array',        'is_active' => 'boolean',
     ];
 }

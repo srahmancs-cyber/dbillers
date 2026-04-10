@@ -2,8 +2,8 @@
     <div class="container-custom mx-auto">
         <div class="flex justify-between items-center py-4">
             <!-- Logo -->
-            <a href="/" class="text-2xl md:text-3xl font-bold text-gray-900 hover:text-gray-700 transition">
-                DBillers
+            <a href="/" class="text-2xl md:text-3xl font-bold" style="color: #1A4F8B;">
+                {{ setting('company_name', 'DBillers') }}
             </a>
             
             <!-- Desktop Navigation -->
@@ -19,9 +19,9 @@
                 @endphp
                 @foreach($navItems as $url => $label)
                     <a href="{{ $url }}" 
-                       class="text-gray-600 hover:text-gray-900 font-medium transition relative group">
+                       class="text-gray-700 hover:text-[#1A4F8B] font-medium transition relative group">
                         {{ $label }}
-                        <span class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-gray-900 transition-all group-hover:w-full"></span>
+                        <span class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-[#1A4F8B] transition-all group-hover:w-full"></span>
                     </a>
                 @endforeach
             </nav>
@@ -29,7 +29,7 @@
             <!-- CTA Button Desktop -->
             <div class="hidden md:block">
                 <a href="/contact" 
-                   class="bg-gray-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-800 transition shadow-md hover:shadow-lg">
+                   class="bg-[#1A4F8B] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#0E3A6B] transition shadow-md hover:shadow-lg">
                     Get Quote
                 </a>
             </div>
@@ -47,12 +47,12 @@
             <div class="flex flex-col space-y-3">
                 @foreach($navItems as $url => $label)
                     <a href="{{ $url }}" 
-                       class="text-gray-600 hover:text-gray-900 font-medium py-2 px-4 hover:bg-gray-50 rounded-lg transition">
+                       class="text-gray-700 hover:text-[#1A4F8B] font-medium py-2 px-4 hover:bg-gray-50 rounded-lg transition">
                         {{ $label }}
                     </a>
                 @endforeach
                 <a href="/contact" 
-                   class="bg-gray-900 text-white px-6 py-2 rounded-lg font-semibold text-center hover:bg-gray-800 transition">
+                   class="bg-[#1A4F8B] text-white px-6 py-2 rounded-lg font-semibold text-center hover:bg-[#0E3A6B] transition">
                     Get Quote
                 </a>
             </div>

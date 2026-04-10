@@ -130,7 +130,7 @@
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
             Find quick answers to common questions about our billing services.
         </p>
-        <a href="/faq" class="btn-secondary">View All FAQs <i class="fas fa-arrow-right"></i></a>
+        <a href="/#faqContainer" class="btn-secondary">View All FAQs <i class="fas fa-arrow-right"></i></a>
     </div>
 </section>
 

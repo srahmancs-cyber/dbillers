@@ -8,38 +8,50 @@
                 <!-- Left Column -->
                 <div class="animate-fade-in-up">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4">
-                        DBillers | Smart Medical Billing for US Healthcare Providers
+                        {{ pageContent('home', 'hero', 'title', 'DBillers | Smart Medical Billing for US Healthcare Providers') }}
                     </h1>
                     <p class="text-xl text-primary font-semibold mb-4">
-                        The Medical Billing Service Provider for USA Healthcare
+                        {{ pageContent('home', 'hero', 'subtitle', 'The Medical Billing Service Provider for USA Healthcare') }}
                     </p>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        DBillers is a top US medical billing firm – applying best practices in revenue cycle management and clinical coding. We help physicians outsource billing and coding to an expert third-party agency. Our certified coders and billers also assist healthcare organizations in recovering aged receivables and resolving insurance claim denials.
-                    </p>
+                    <div class="text-gray-600 mb-8 leading-relaxed">
+                        {!! pageContent('home', 'hero', 'content', 'DBillers is a top US medical billing firm – applying best practices in revenue cycle management and clinical coding. We help physicians outsource billing and coding to an expert third-party agency. Our certified coders and billers also assist healthcare organizations in recovering aged receivables and resolving insurance claim denials.') !!}
+                    </div>
 
                     <!-- Buttons -->
                     <div class="flex flex-wrap gap-4 mb-8">
-                        <a href="/contact" class="btn-primary">
-                            Book a Free Consultation <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="/contact" class="btn-secondary">
-                            Free Billing Demo <i class="fas fa-calendar-alt"></i>
-                        </a>
+                        @php $buttons = pageContent('home', 'hero', 'metadata.buttons', []); @endphp
+                        @foreach ($buttons as $button)
+                            <a href="{{ $button['url'] }}" class="{{ $loop->first ? 'btn-primary' : 'btn-secondary' }}">
+                                {{ $button['text'] }} <i class="fas {{ $button['icon'] }}"></i>
+                            </a>
+                        @endforeach
                     </div>
 
                     <!-- Trust Badges -->
                     <div class="trust-badges">
-                        <div class="trust-badge">1500+ Satisfied Providers</div>
-                        <div class="trust-badge">75+ Specialties Served</div>
-                        <div class="trust-badge">1200+ Billing & Coding Experts</div>
+                        @php $badges = pageContent('home', 'hero', 'metadata.trust_badges', []); @endphp
+                        @foreach ($badges as $badge)
+                            <div class="trust-badge">{{ is_array($badge) ? $badge['value'] : $badge }}</div>
+                        @endforeach
                     </div>
                 </div>
 
                 <!-- Right Column - Image -->
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=500&fit=crop" alt="Medical billing professionals" class="rounded-2xl shadow-2xl w-full h-auto">
+                    @php $imageUrl = pageContent('home', 'hero', 'image_url', ''); @endphp
+                    @if ($imageUrl && $imageUrl != '')
+                        <img src="{{ $imageUrl }}" alt="Medical billing professionals" class="rounded-2xl shadow-2xl w-full h-auto">
+                    @else
+                        <div class="bg-gray-100 rounded-2xl shadow-2xl w-full h-96 flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
+                            <i class="fas fa-image text-5xl text-gray-400 mb-3"></i>
+                            <p class="text-gray-500 text-center px-4">No image uploaded</p>
+                            <p class="text-gray-400 text-sm mt-2">Recommended size: 600x500px</p>
+                            <p class="text-gray-400 text-xs">Upload via Admin → Page Content → Hero Settings</p>
+                        </div>
+                    @endif
                     <div class="absolute -bottom-6 -left-6 bg-primary text-white p-4 rounded-xl shadow-lg">
-                        <i class="fas fa-chart-line text-3xl"></i>
+                        @php $floatingIcon = pageContent('home', 'hero', 'metadata.floating_icon', 'fa-chart-line'); @endphp
+                        <i class="fas {{ $floatingIcon }} text-3xl"></i>
                     </div>
                 </div>
             </div>
@@ -50,53 +62,25 @@
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>Overview of Medical Billing Services in the USA</h2>
+                <h2>{{ pageContent('home', 'services_overview', 'title', 'Overview of Medical Billing Services in the USA') }}</h2>
                 <div class="underline"></div>
             </div>
-            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
-                Medical billing services provide organized solutions that convert clinical data into billable insurance claims. Through electronic billing and structured workflows, healthcare providers accurately capture diagnoses, procedures, and charges before submitting them to payers. Beyond claim creation, we offer physician accounts management, claim rejection resolution, balance tracking, and financial reporting for better revenue cycle planning.
-            </p>
+            <div class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                {!! pageContent('home', 'services_overview', 'content', 'Medical billing services provide organized solutions that convert clinical data into billable insurance claims. Through electronic billing and structured workflows, healthcare providers accurately capture diagnoses, procedures, and charges before submitting them to payers. Beyond claim creation, we offer physician accounts management, claim rejection resolution, balance tracking, and financial reporting for better revenue cycle planning.') !!}
+            </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Service 1 -->
-                <div class="card">
-                    <div class="feature-icon mb-4">
-                        <i class="fas fa-headset text-2xl"></i>
+                @php $services = pageContent('home', 'services_overview', 'metadata.services', []); @endphp
+                @foreach ($services as $service)
+                    <div class="card">
+                        <div class="feature-icon mb-4">
+                            <i class="fas {{ $service['icon'] }} text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">{{ $service['title'] }}</h3>
+                        <p class="text-gray-500 text-sm mb-3">{{ $service['description'] }}</p>
+                        <a href="{{ $service['link'] }}" class="text-primary font-semibold text-sm hover:underline">Explore More <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Medical Billing Consultation</h3>
-                    <p class="text-gray-500 text-sm mb-3">Expert patient billers handle check-in/out, claims, payments, and denials for healthcare providers.</p>
-                    <a href="/contact" class="text-primary font-semibold text-sm hover:underline">Explore More <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="card">
-                    <div class="feature-icon mb-4">
-                        <i class="fas fa-code text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Medical Coding</h3>
-                    <p class="text-gray-500 text-sm mb-3">Clinical coding officers translate patient services into ICD-10 and CPT codes, generating a clean "super-bill" for insurance submission.</p>
-                    <a href="/contact" class="text-primary font-semibold text-sm hover:underline">Explore More <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="card">
-                    <div class="feature-icon mb-4">
-                        <i class="fas fa-id-card text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Provider Credentialing</h3>
-                    <p class="text-gray-500 text-sm mb-3">Credentialing specialists help providers join desirable payer networks with maximum privileges.</p>
-                    <a href="/contact" class="text-primary font-semibold text-sm hover:underline">Explore More <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="card">
-                    <div class="feature-icon mb-4">
-                        <i class="fas fa-chart-pie text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Healthcare RCM</h3>
-                    <p class="text-gray-500 text-sm mb-3">Specialty-specific revenue cycle management with a dedicated biller for your practice's unique needs.</p>
-                    <a href="/contact" class="text-primary font-semibold text-sm hover:underline">Explore More <i class="fas fa-arrow-right"></i></a>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -107,59 +91,54 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                     <span class="text-primary font-semibold text-sm uppercase tracking-wide">Our Expertise</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">We Boost Healthcare Income with Quick, Uncut Reimbursements</h2>
-                    <p class="text-primary font-semibold mb-4">The Billing Firm That Does Medical Claims Processing</p>
-                    <p class="text-gray-600 mb-6">Claim management can be difficult when you need timely submissions and full payment. Our niche billing services ease the way. We optimize every invoicing phase using clinical knowledge and first-class claims processing. Cloud technology validates patient insurance eligibility instantly and files claims electronically to speed payments. Our billers ensure every claim reaches the insurer for full reimbursement.</p>
-
-                    <div class="grid sm:grid-cols-2 gap-4 mb-6">
-                        <div class="feature-item">
-                            <i class="fas fa-shield-alt text-primary text-xl"></i>
-                            <div>
-                                <h4 class="font-bold">Secure Claim Data Transmission</h4>
-                                <p class="text-sm text-gray-500">Safest digital encryption protects sensitive patient data.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-chart-line text-primary text-xl"></i>
-                            <div>
-                                <h4 class="font-bold">Increase Revenue</h4>
-                                <p class="text-sm text-gray-500">Get full payments without unfair insurance network cuts.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-bolt text-primary text-xl"></i>
-                            <div>
-                                <h4 class="font-bold">Instant Claim Submission</h4>
-                                <p class="text-sm text-gray-500">Electronic billing service files claims instantly.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-clock text-primary text-xl"></i>
-                            <div>
-                                <h4 class="font-bold">Claim Follow-Up & Resolution</h4>
-                                <p class="text-sm text-gray-500">Denied claims are appealed and reprocessed successfully.</p>
-                            </div>
-                        </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">{{ pageContent('home', 'medical_claims', 'title', 'We Boost Healthcare Income with Quick, Uncut Reimbursements') }}</h2>
+                    <p class="text-primary font-semibold mb-4">{{ pageContent('home', 'medical_claims', 'subtitle', 'The Billing Firm That Does Medical Claims Processing') }}</p>
+                    <div class="text-gray-600 mb-6">
+                        {!! pageContent('home', 'medical_claims', 'content', 'Claim management can be difficult when you need timely submissions and full payment. Our niche billing services ease the way. We optimize every invoicing phase using clinical knowledge and first-class claims processing. Cloud technology validates patient insurance eligibility instantly and files claims electronically to speed payments. Our billers ensure every claim reaches the insurer for full reimbursement.') !!}
                     </div>
 
-                    <a href="/contact" class="btn-primary">Book Free Consultation <i class="fas fa-arrow-right"></i></a>
+                    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                        @php $features = pageContent('home', 'medical_claims', 'metadata.features', []); @endphp
+                        @foreach ($features as $feature)
+                            <div class="feature-item">
+                                <i class="fas {{ $feature['icon'] }} text-primary text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold">{{ $feature['title'] }}</h4>
+                                    <p class="text-sm text-gray-500">{{ $feature['description'] }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    @php $buttonText = pageContent('home', 'medical_claims', 'metadata.button_text', 'Book Free Consultation'); @endphp
+                    @php $buttonLink = pageContent('home', 'medical_claims', 'metadata.button_link', '/contact'); @endphp
+                    <a href="{{ $buttonLink }}" class="btn-primary">{{ $buttonText }} <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=500&h=400&fit=crop" alt="Medical claims processing" class="rounded-2xl shadow-xl w-full">
+                    @php $imageUrl = pageContent('home', 'medical_claims', 'image_url', ''); @endphp
+                    @if ($imageUrl && $imageUrl != '')
+                        <img src="{{ $imageUrl }}" alt="Medical claims processing" class="rounded-2xl shadow-xl w-full">
+                    @else
+                        <div class="bg-gray-100 rounded-2xl shadow-xl w-full h-96 flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
+                            <i class="fas fa-image text-5xl text-gray-400 mb-3"></i>
+                            <p class="text-gray-500">No image uploaded</p>
+                            <p class="text-gray-400 text-sm">Recommended size: 500x400px</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Section 4: Specialized Medical Billing Agency -->
-    <section class="bg-primary text-white">
-        <div class="container-custom mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">When "Good Enough" Isn't Enough, You Need a Specialized Medical Billing Agency</h2>
-            <p class="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-                As a leading billing provider, we extract every possible dollar from your claims through 24/7 billing cycle oversight. We are experts on major commercial insurers like Aetna and Blue Cross Blue Shield, and we know government plans inside out – Medicare and Medicaid. We work closely with top payers to ensure reimbursement forms like CMS-1500, CMS-1450 (UB-04), and CMS-1728-20 are always accurate. DBillers makes claims and repayments happen.
-            </p>
-            <a href="/contact" class="inline-flex bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg">
-                Yes, I Want a Free Billing Demo <i class="fas fa-arrow-right ml-2"></i>
+    <section style="background-color: #1A4F8B;">
+        <div class="container-custom mx-auto text-center py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ pageContent('home', 'specialized_agency', 'title') }}</h2>
+            <div class="text-white text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
+                {!! pageContent('home', 'specialized_agency', 'content') !!}
+            </div>
+            <a href="{{ pageContent('home', 'specialized_agency', 'metadata.button_link') }}" class="inline-flex bg-white text-[#1A4F8B] px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg">
+                {{ pageContent('home', 'specialized_agency', 'metadata.button_text') }} <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
     </section>
@@ -168,26 +147,21 @@
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>Trust Your Billing to a Company Ranked Among the Best</h2>
+                <h2>{{ pageContent('home', 'trust_ratings', 'title') }}</h2>
                 <div class="underline"></div>
             </div>
-            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-                With a 4.8-star Trustpilot rating from 200+ reviews, a 4.8-star Google rating from 340+ reviews, and an A+ Better Business Bureau rating, DBillers is widely recognized as a top medical billing service provider in the United States.
-            </p>
+            <div class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                {!! pageContent('home', 'trust_ratings', 'content') !!}
+            </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="stat-number">Almost 99%</div>
-                    <p class="text-gray-600">Clean Claim Ratio</p>
-                </div>
-                <div class="text-center">
-                    <div class="stat-number">About 97.35%</div>
-                    <p class="text-gray-600">First Submission Pass Rate</p>
-                </div>
-                <div class="text-center">
-                    <div class="stat-number">Up to 30%</div>
-                    <p class="text-gray-600">Revenue Increase</p>
-                </div>
+                @php $stats = pageContent('home', 'trust_ratings', 'metadata.stats', []); @endphp
+                @foreach ($stats as $stat)
+                    <div class="text-center">
+                        <div class="stat-number">{{ $stat['value'] }}</div>
+                        <p class="text-gray-600">{{ $stat['label'] }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -196,40 +170,37 @@
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>Medical Billing That Unites Technology & Expertise to Meet Every Doctor's Vision</h2>
+                <h2>{{ pageContent('home', 'tech_expertise', 'title') }}</h2>
                 <div class="underline"></div>
             </div>
-            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-                Our USA-based revenue cycle management company helps individual and institutional providers navigate patient billing and coding challenges using modern solutions.
-            </p>
+            <div class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                {!! pageContent('home', 'tech_expertise', 'content') !!}
+            </div>
 
             <!-- Service Tags -->
             <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <span class="tag"><i class="fas fa-check-circle text-primary mr-1"></i> Patient Verification</span>
-                <span class="tag"><i class="fas fa-check-circle text-primary mr-1"></i> Claim Scrubbing</span>
-                <span class="tag"><i class="fas fa-check-circle text-primary mr-1"></i> Claim Submission</span>
-                <span class="tag"><i class="fas fa-check-circle text-primary mr-1"></i> Revenue Cycle Management</span>
-                <span class="tag"><i class="fas fa-check-circle text-primary mr-1"></i> A/R Recovery</span>
-                <span class="tag"><i class="fas fa-check-circle text-primary mr-1"></i> Fast Reimbursement</span>
+                @php $tags = pageContent('home', 'tech_expertise', 'metadata.tags', []); @endphp
+                @foreach ($tags as $tag)
+                    <span class="tag"><i class="fas fa-check-circle text-primary mr-1"></i> {{ $tag }}</span>
+                @endforeach
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="card text-center">
-                    <i class="fas fa-smile text-5xl text-primary mb-4"></i>
-                    <div class="stat-number">96%</div>
-                    <p class="font-semibold">Happiness Score</p>
-                    <p class="text-sm text-gray-500">Based on 4.8-star rating from 350+ providers across the states</p>
-                </div>
-                <div class="card text-center">
-                    <i class="fas fa-users text-5xl text-primary mb-4"></i>
-                    <div class="stat-number">1,200+</div>
-                    <p class="font-semibold">Billing Experts</p>
-                    <p class="text-sm text-gray-500">CMRS, RHIA, CPB certified billers and coders for every specialty</p>
-                </div>
+                @php $cards = pageContent('home', 'tech_expertise', 'metadata.cards', []); @endphp
+                @foreach ($cards as $card)
+                    <div class="card text-center">
+                        <i class="fas {{ $card['icon'] }} text-5xl text-primary mb-4"></i>
+                        <div class="stat-number">{{ $card['value'] }}</div>
+                        <p class="font-semibold">{{ $card['title'] }}</p>
+                        <p class="text-sm text-gray-500">{{ $card['description'] }}</p>
+                    </div>
+                @endforeach
             </div>
 
             <div class="text-center mt-10">
-                <a href="/about" class="btn-secondary">About Us <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ pageContent('home', 'tech_expertise', 'metadata.button_link') }}" class="btn-secondary">
+                    {{ pageContent('home', 'tech_expertise', 'metadata.button_text') }} <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -238,32 +209,27 @@
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>Experience Our Medical Billing Services for as Low as 2.49%</h2>
+                <h2>{{ pageContent('home', 'pricing_offer', 'title') }}</h2>
                 <div class="underline"></div>
             </div>
-            <p class="text-center text-gray-600 mb-12">Over 1,500 medical practices trust DBillers. Let's have a chat.</p>
+            <div class="text-center text-gray-600 mb-12">
+                {!! pageContent('home', 'pricing_offer', 'content') !!}
+            </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                <div class="card text-center">
-                    <i class="fas fa-shield-alt text-3xl text-primary mb-3"></i>
-                    <p class="font-semibold">Patient insurance coverage verification on the spot</p>
-                </div>
-                <div class="card text-center">
-                    <i class="fas fa-lock text-3xl text-primary mb-3"></i>
-                    <p class="font-semibold">HIPAA-compliant billing for data safety</p>
-                </div>
-                <div class="card text-center">
-                    <i class="fas fa-clock text-3xl text-primary mb-3"></i>
-                    <p class="font-semibold">24/7 medical billing to handle every claim submission</p>
-                </div>
-                <div class="card text-center">
-                    <i class="fas fa-chart-line text-3xl text-primary mb-3"></i>
-                    <p class="font-semibold">98% claim reimbursement rate for healthy cash flow</p>
-                </div>
+                @php $features = pageContent('home', 'pricing_offer', 'metadata.features', []); @endphp
+                @foreach ($features as $feature)
+                    <div class="card text-center">
+                        <i class="fas {{ $feature['icon'] }} text-3xl text-primary mb-3"></i>
+                        <p class="font-semibold">{{ $feature['text'] }}</p>
+                    </div>
+                @endforeach
             </div>
 
             <div class="text-center">
-                <a href="/contact" class="btn-primary">Book a Demo <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ pageContent('home', 'pricing_offer', 'metadata.button_link') }}" class="btn-primary">
+                    {{ pageContent('home', 'pricing_offer', 'metadata.button_text') }} <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -273,12 +239,23 @@
         <div class="container-custom mx-auto">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&h=400&fit=crop" alt="Dedicated team" class="rounded-2xl shadow-xl w-full">
+                    @php $imageUrl = pageContent('home', 'dedicated_team', 'image_url'); @endphp
+                    @if ($imageUrl)
+                        <img src="{{ $imageUrl }}" alt="Dedicated team" class="rounded-2xl shadow-xl w-full">
+                    @else
+                        <div class="bg-gray-100 rounded-2xl shadow-xl w-full h-96 flex items-center justify-center">
+                            <i class="fas fa-users text-5xl text-gray-400"></i>
+                        </div>
+                    @endif
                 </div>
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Dedicated Accounts Managers & Expert Medical Billers for Health Centers</h2>
-                    <p class="text-gray-600 mb-6">Healthcare organizations are at the heart of our billing and collections team. From primary care physicians to specialty clinics, our coding officers and claims examiners use a precision-driven approach so revenue flows smoothly and claim denials fade away.</p>
-                    <a href="/contact" class="btn-primary">Claim Free Practice Audit <i class="fas fa-arrow-right"></i></a>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ pageContent('home', 'dedicated_team', 'title') }}</h2>
+                    <div class="text-gray-600 mb-6">
+                        {!! pageContent('home', 'dedicated_team', 'content') !!}
+                    </div>
+                    <a href="{{ pageContent('home', 'dedicated_team', 'metadata.button_link') }}" class="btn-primary">
+                        {{ pageContent('home', 'dedicated_team', 'metadata.button_text') }} <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -289,34 +266,21 @@
         <div class="container-custom mx-auto">
             <div class="grid md:grid-cols-2 gap-12">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Which of These Challenges Are You Facing as a Provider?</h2>
-                    <div class="space-y-3">
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" class="w-5 h-5 text-primary rounded">
-                            <span>Inadequate follow-up on claims and payments</span>
-                        </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" class="w-5 h-5 text-primary rounded">
-                            <span>Accounts receivable aging past 90/120+ days</span>
-                        </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" class="w-5 h-5 text-primary rounded">
-                            <span>Rising patient balances causing financial strain</span>
-                        </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" class="w-5 h-5 text-primary rounded">
-                            <span>Frustration due to lack of transparency and reporting</span>
-                        </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" class="w-5 h-5 text-primary rounded">
-                            <span>Overall decline in collections impacting practice revenue</span>
-                        </label>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ pageContent('home', 'provider_challenges', 'title') }}</h2>
+                    <div class="space-y-3" id="challengesList">
+                        @php $challenges = pageContent('home', 'provider_challenges', 'metadata.challenges', []); @endphp
+                        @foreach ($challenges as $index => $challenge)
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="challenge-checkbox w-5 h-5 text-primary rounded" data-challenge="{{ $challenge }}">
+                                <span>{{ $challenge }}</span>
+                            </label>
+                        @endforeach
                     </div>
                 </div>
                 <div>
                     <div class="card">
                         <h3 class="text-2xl font-bold mb-4">Free Consultation</h3>
-                        <form action="{{ route('contact.submit') }}" method="POST">
+                        <form action="{{ route('contact.submit') }}" method="POST" id="consultationForm">
                             @csrf
                             <div class="mb-4">
                                 <input type="text" name="name" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
@@ -327,6 +291,10 @@
                             <div class="mb-4">
                                 <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
                             </div>
+                            <div class="mb-4">
+                                <textarea name="message" placeholder="Tell us about your practice or specific challenges" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"></textarea>
+                            </div>
+                            <input type="hidden" name="selected_challenges" id="selectedChallenges" value="">
                             <button type="submit" class="btn-primary w-full justify-center">Free Consultation <i class="fas fa-arrow-right"></i></button>
                         </form>
                     </div>
@@ -335,24 +303,32 @@
         </div>
     </section>
 
+    <script>
+        document.getElementById('consultationForm').addEventListener('submit', function() {
+            let selected = [];
+            document.querySelectorAll('.challenge-checkbox:checked').forEach(function(checkbox) {
+                selected.push(checkbox.getAttribute('data-challenge'));
+            });
+            document.getElementById('selectedChallenges').value = selected.join(', ');
+        });
+    </script>
+
     <!-- Section 10: Specialty Medical Billing -->
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>Specialty Medical Billing</h2>
+                <h2>{{ pageContent('home', 'specialty_billing', 'title') }}</h2>
                 <div class="underline"></div>
             </div>
-            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-                Our tailored billing services boost reimbursements through specialty-focused teams skilled in ICD-10 coding rules and protocols unique to your medical niche. We customize your EHR to match your specialty's workflows.
-            </p>
+            <div class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                {!! pageContent('home', 'specialty_billing', 'content') !!}
+            </div>
 
             <div class="flex flex-wrap justify-center gap-4">
-                <span class="tag"><i class="fas fa-flask text-primary mr-2"></i> Laboratory Billing</span>
-                <span class="tag"><i class="fas fa-heartbeat text-primary mr-2"></i> Cardiology</span>
-                <span class="tag"><i class="fas fa-brain text-primary mr-2"></i> Behavioral Health</span>
-                <span class="tag"><i class="fas fa-bone text-primary mr-2"></i> Orthopedics</span>
-                <span class="tag"><i class="fas fa-truck text-primary mr-2"></i> Urgent Care</span>
-                <span class="tag"><i class="fas fa-stethoscope text-primary mr-2"></i> Urology</span>
+                @php $specialties = pageContent('home', 'specialty_billing', 'metadata.specialties', []); @endphp
+                @foreach ($specialties as $specialty)
+                    <span class="tag"><i class="fas fa-stethoscope text-primary mr-2"></i> {{ $specialty }}</span>
+                @endforeach
             </div>
         </div>
     </section>
@@ -361,22 +337,20 @@
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>Nationwide Availability</h2>
+                <h2>{{ pageContent('home', 'nationwide', 'title') }}</h2>
                 <div class="underline"></div>
             </div>
-            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">
-                As a top medical billing company in the USA, DBillers helps providers succeed financially across all 50 states. Our American workforce has the payer knowledge to maximize claim reimbursements anywhere.
-            </p>
+            <div class="text-center text-gray-600 max-w-2xl mx-auto mb-8">
+                {!! pageContent('home', 'nationwide', 'content') !!}
+            </div>
 
             <div class="text-center">
                 <p class="text-gray-500 mb-3">Choose your location</p>
                 <div class="flex flex-wrap justify-center gap-3">
-                    <span class="tag">Chicago</span>
-                    <span class="tag">Los Angeles</span>
-                    <span class="tag">Alabama</span>
-                    <span class="tag">California</span>
-                    <span class="tag">Indiana</span>
-                    <span class="tag">New York</span>
+                    @php $locations = pageContent('home', 'nationwide', 'metadata.locations', []); @endphp
+                    @foreach ($locations as $location)
+                        <span class="tag">{{ $location }}</span>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -386,24 +360,22 @@
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>Affordable Pricing vs. In-House Billing</h2>
+                <h2>{{ pageContent('home', 'pricing_comparison', 'title') }}</h2>
                 <div class="underline"></div>
             </div>
-            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-                Save compared to internal billing with our affordable 2.49% collections rate, pay-for-paid model, free EMR software, scalability, and free denied claim appeals.
-            </p>
+            <div class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                {!! pageContent('home', 'pricing_comparison', 'content') !!}
+            </div>
 
             <!-- Perks List -->
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <div>
                     <h3 class="font-bold text-lg mb-4">What's Included:</h3>
                     <div class="grid grid-cols-2 gap-2">
-                        <div><i class="fas fa-check text-primary mr-2"></i> Billing Software</div>
-                        <div><i class="fas fa-check text-primary mr-2"></i> Denial Management</div>
-                        <div><i class="fas fa-check text-primary mr-2"></i> Accounts Management</div>
-                        <div><i class="fas fa-check text-primary mr-2"></i> Electronic Statements</div>
-                        <div><i class="fas fa-check text-primary mr-2"></i> Clearinghouse Services</div>
-                        <div><i class="fas fa-check text-primary mr-2"></i> 1:1 Technical Support</div>
+                        @php $included = pageContent('home', 'pricing_comparison', 'metadata.included', []); @endphp
+                        @foreach ($included as $item)
+                            <div><i class="fas fa-check text-primary mr-2"></i> {{ $item }}</div>
+                        @endforeach
                     </div>
                 </div>
                 <div>
@@ -459,7 +431,9 @@
             </div>
 
             <div class="text-center">
-                <a href="/contact" class="btn-primary">Get Instant Free Pricing Quote <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ pageContent('home', 'pricing_comparison', 'metadata.button_link') }}" class="btn-primary">
+                    {{ pageContent('home', 'pricing_comparison', 'metadata.button_text') }} <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -470,70 +444,56 @@
         const dbillersTotal = document.getElementById('dbillersTotal');
         const savingsAmount = document.getElementById('savingsAmount');
 
-        slider.addEventListener('input', function() {
-            let value = parseInt(this.value);
-            let formattedValue = '$' + value.toLocaleString();
-            collectionsValue.textContent = formattedValue;
+        if (slider) {
+            slider.addEventListener('input', function() {
+                let value = parseInt(this.value);
+                let formattedValue = '$' + value.toLocaleString();
+                collectionsValue.textContent = formattedValue;
 
-            let annualCollections = value * 12;
-            let inHouseTotal = 69480;
-            let dbillersCost = annualCollections * 0.0299;
-            let savings = inHouseTotal - dbillersCost;
+                let annualCollections = value * 12;
+                let inHouseTotal = 69480;
+                let dbillersCost = annualCollections * 0.0299;
+                let savings = inHouseTotal - dbillersCost;
 
-            dbillersTotal.textContent = '$' + Math.round(dbillersCost).toLocaleString();
-            savingsAmount.textContent = '$' + Math.round(savings).toLocaleString();
-        });
+                dbillersTotal.textContent = '$' + Math.round(dbillersCost).toLocaleString();
+                savingsAmount.textContent = '$' + Math.round(savings).toLocaleString();
+            });
+        }
     </script>
 
     <!-- Section 13: Testimonials -->
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>See What Healthcare Providers Say About Us</h2>
+                <h2>{{ pageContent('home', 'testimonials', 'title') }}</h2>
                 <div class="underline"></div>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                @php $testimonials = pageContent('home', 'testimonials', 'metadata.testimonials', []); @endphp
+                @foreach ($testimonials as $testimonial)
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            @for ($i = 1; $i <= floor($testimonial['stars']); $i++)
+                                <i class="fas fa-star"></i>
+                            @endfor
+                            @if ($testimonial['stars'] - floor($testimonial['stars']) > 0)
+                                <i class="fas fa-star-half-alt"></i>
+                            @endif
+                        </div>
+                        <p class="testimonial-text">"{{ $testimonial['text'] }}"</p>
+                        <p class="font-semibold">— {{ $testimonial['author'] }}</p>
+                        <p class="text-sm text-gray-500">{{ $testimonial['role'] }}</p>
                     </div>
-                    <p class="testimonial-text">"DBillers responds to my inquiries within hours, not days. They will argue with insurance to collect every penny owed, learned my chiropractic software quickly, and their fees are very reasonable. My life is easier because of DBillers."</p>
-                    <p class="font-semibold">— David J. Gel***</p>
-                    <p class="text-sm text-gray-500">US-based Chiropractor</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"We are more than satisfied with DBillers and would highly recommend them to anyone searching for an efficient billing company. Working with DBillers has felt effortless."</p>
-                    <p class="font-semibold">— Dr. Gennaya Matt***</p>
-                    <p class="text-sm text-gray-500">Plastic Surgeon</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"DBillers has been a phenomenal asset to our company. Assisting with billing, credentialing, and enrollment, they have been consistently reliable from day one."</p>
-                    <p class="font-semibold">— Dr. Mike Lan***</p>
-                    <p class="text-sm text-gray-500">Internal Medicine Specialist</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"My Behavioral Health practice started receiving billing services and we have experienced great improvement in collections, which has improved our bottom line."</p>
-                    <p class="font-semibold">— Dr. Belen Bur***</p>
-                    <p class="text-sm text-gray-500">Psychiatrist</p>
-                </div>
+                @endforeach
             </div>
 
             <div class="text-center">
                 <div class="inline-flex items-center gap-2 bg-gray-100 px-6 py-3 rounded-full">
                     <i class="fas fa-check-circle text-primary"></i>
-                    <span class="font-semibold">Trusted by 300+ Verified Practices</span>
-                    <span class="text-primary">★★★★★ 4.8/5</span>
-                    <span class="text-gray-500">(354 reviews)</span>
+                    <span class="font-semibold">{{ pageContent('home', 'testimonials', 'metadata.trust_badge') }}</span>
+                    <span class="text-primary">★★★★★ {{ pageContent('home', 'testimonials', 'metadata.rating') }}</span>
+                    <span class="text-gray-500">({{ pageContent('home', 'testimonials', 'metadata.reviews') }} reviews)</span>
                 </div>
             </div>
         </div>
@@ -543,53 +503,21 @@
     <section>
         <div class="container-custom mx-auto">
             <div class="section-headline">
-                <h2>Frequently Asked Questions</h2>
+                <h2>{{ pageContent('home', 'faq', 'title') }}</h2>
                 <div class="underline"></div>
             </div>
 
             <div class="max-w-3xl mx-auto" id="faqContainer">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>What is a medical billing company and how can it help me?</span>
-                        <i class="fas fa-plus"></i>
+                @php $faqs = pageContent('home', 'faq', 'metadata.faqs', []); @endphp
+                @foreach ($faqs as $index => $faq)
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>{{ $faq['question'] }}</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">{{ $faq['answer'] }}</div>
                     </div>
-                    <div class="faq-answer">For a medical practice, billing services handle the logistical details of getting paid by insurance companies and patients. Billers take over coding, filing, follow-up, and payment posting. Providers benefit through reduced costs, improved cash flow, decreased claim denials, and more time to focus on patients.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>What is a medical billing service?</span>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">Medical billing services manage every financial touchpoint after a patient visit: verifying coverage, coding procedures, filing claims, appealing denials, and depositing funds to ensure providers receive full, compliant reimbursement.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>What services does your medical billing company offer?</span>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">We offer provider enrollment, insurance verification, charge entry, claim submission, payment posting, accounts receivable management, denial management, appeal management, patient billing, reimbursement tracking, and collections.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>How does your company handle claim reimbursement and denial management?</span>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">Accurate claim submission is only the beginning. We communicate with payers to shepherd each claim to resolution. Underpayments and denials receive aggressive follow-up and appeals when justified. Our experience ensures you receive every dollar on time.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Can I monitor the performance and quality of your billing service?</span>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">Yes. DBillers lets providers track the caliber and results of their facility's billing. We share reports on daily invoicing, key metrics, and feedback for revenue cycle improvement.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Do you offer independent and advanced medical billing services?</span>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">Yes. We have the people and processes to provide specialized billing for Medicaid and Medicare patients. Every state has its own rules, and we stay on top of them. We monitor each claim to ensure payment and handle appeals when needed.</div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -608,12 +536,18 @@
 
     <!-- Section 15: Final CTA -->
     <section class="bg-primary text-white text-center">
-        <div class="container-custom mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Schedule a Free Demo</h2>
-            <p class="text-white/90 text-lg mb-8">Sign up and book a free service demo</p>
+        <div class="container-custom mx-auto py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ pageContent('home', 'final_cta', 'title') }}</h2>
+            <p class="text-white/90 text-lg mb-8">{{ pageContent('home', 'final_cta', 'content') }}</p>
             <div class="flex flex-wrap gap-4 justify-center">
-                <a href="/contact" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">Free Demo <i class="fas fa-arrow-right"></i></a>
-                <a href="/contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition">See Pricing Packages</a>
+                @php $buttons = pageContent('home', 'final_cta', 'metadata.buttons', []); @endphp
+                @foreach ($buttons as $index => $button)
+                    @if ($index == 0)
+                        <a href="{{ $button['link'] }}" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">{{ $button['text'] }} <i class="fas fa-arrow-right"></i></a>
+                    @else
+                        <a href="{{ $button['link'] }}" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition">{{ $button['text'] }}</a>
+                    @endif
+                @endforeach
             </div>
         </div>
     </section>
