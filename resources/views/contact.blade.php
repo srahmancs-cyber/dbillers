@@ -40,10 +40,25 @@
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="text-xl font-semibold mb-4">Our Information</h3>
                     <div class="space-y-4 text-gray-600">
-                        <p>📞 <strong>Phone:</strong> +1 (555) 123-4567</p>
-                        <p>✉️ <strong>Email:</strong> contact@dbillers.com</p>
-                        <p>📍 <strong>Address:</strong> 123 Medical District, New York, NY 10001</p>
-                        <p>🕒 <strong>Business Hours:</strong><br>Monday - Friday: 9AM - 6PM EST</p>
+                        @php
+                            $phone = setting('company_phone');
+                            $email = setting('company_email');
+                            $address = setting('company_address');
+                        @endphp
+                        
+                        @if($phone)
+                        <p><strong>Phone:</strong> {{ $phone }}</p>
+                        @endif
+                        
+                        @if($email)
+                        <p><strong>Email:</strong> {{ $email }}</p>
+                        @endif
+                        
+                        @if($address)
+                        <p><strong>Address:</strong> {{ $address }}</p>
+                        @endif
+                        
+                        <p><strong>Business Hours:</strong><br>Monday - Friday: 9AM - 6PM EST</p>
                     </div>
                 </div>
             </div>
