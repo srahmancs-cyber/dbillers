@@ -33,10 +33,14 @@ class ContactLeadResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
+        public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Date')
+                    ->dateTime('M d, Y h:i A')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('email')->searchable(),
                 Tables\Columns\TextColumn::make('phone'),
@@ -47,8 +51,8 @@ class ContactLeadResource extends Resource
                         'unread' => 'danger',
                         'read' => 'success',
                     }),
-                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
@@ -66,6 +70,7 @@ class ContactLeadResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {
