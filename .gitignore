@@ -29,3 +29,4 @@ package-lock.json
 yarn.lock
 /.github
 /phpunit.xml
+database_backup.sql
