@@ -11,4 +11,7 @@ Route::get('/specialities', [PageController::class, 'specialities'])->name('spec
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
+// Filament routes are automatically registered via AdminPanelProvider
+// No need to add them here
+
 require __DIR__.'/auth.php';
