@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -12,6 +13,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy.policy');
 Route::get('/terms-of-service', [PageController::class, 'terms'])->name('terms.service');
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 // Filament routes are automatically registered via AdminPanelProvider
 // No need to add them here

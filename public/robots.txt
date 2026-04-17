@@ -1,2 +1,23 @@
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://dbillers.com/sitemap.xml
+
+# Disallow admin panel
+Disallow: /admin
+Disallow: /login
+Disallow: /logout
+Disallow: /register
+
+# Disallow Laravel specific paths
+Disallow: /_debugbar
+Disallow: /horizon
+Disallow: /telescope
+Disallow: /vendor
+
+# Disallow asset directories
+Disallow: /build/
+Disallow: /css/
+Disallow: /js/
+
+# Crawl delay to be respectful
+Crawl-delay: 1
