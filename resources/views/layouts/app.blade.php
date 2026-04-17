@@ -29,7 +29,21 @@
     <!-- Font Awesome 6 (Free CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Always use built assets (works with APP_ENV=local) -->
+    @php
+        $manifestPath = public_path('build/manifest.json');
+        $cssFile = 'assets/app-rk26vugh.css';
+        $jsFile = 'assets/app-BdKX2mS3.js';
+        
+        if (file_exists($manifestPath)) {
+            $manifest = json_decode(file_get_contents($manifestPath), true);
+            $cssFile = $manifest['resources/css/app.css']['file'] ?? $cssFile;
+            $jsFile = $manifest['resources/js/app.js']['file'] ?? $jsFile;
+        }
+    @endphp
+    
+    <link rel="stylesheet" href="{{ asset('build/' . $cssFile) }}">
+    <script type="module" src="{{ asset('build/' . $jsFile) }}"></script>
     
     <style>
         [x-cloak] { display: none !important; }
