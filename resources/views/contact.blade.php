@@ -11,7 +11,7 @@
 @section('content')
 
 <!-- Section 1: Hero -->
-<section class="bg-white">
+<section class="bg-white" data-aos="fade-up">
     <div class="container-custom mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact Us</h1>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -21,10 +21,10 @@
 </section>
 
 <!-- Section 2: Contact Form & Info -->
-<section class="bg-light">
+<section class="bg-light" data-aos="fade-up">
     <div class="container-custom mx-auto">
         @if(session('success'))
-            <div class="bg-green-50 border border-green-400 text-green-700 px-6 py-4 rounded-xl mb-8 text-center">
+            <div class="bg-green-50 border border-green-400 text-green-700 px-6 py-4 rounded-xl mb-8 text-center" data-aos="flip-up">
                 <i class="fas fa-check-circle text-green-500 mr-2"></i>
                 {{ session('success') }}
             </div>
@@ -32,7 +32,7 @@
 
         <div class="grid md:grid-cols-2 gap-8">
             <!-- Contact Form -->
-            <div class="card">
+            <div class="card" data-aos="fade-right">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
                 <form method="POST" action="{{ route('contact.submit') }}">
                     @csrf
@@ -59,7 +59,7 @@
             </div>
 
             <!-- Contact Information -->
-            <div class="card">
+            <div class="card" data-aos="fade-left">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
                 <div class="space-y-6">
                     @php
@@ -69,7 +69,7 @@
                     @endphp
                     
                     @if($phone)
-                    <div class="flex items-start gap-4">
+                    <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="feature-icon">
                             <i class="fas fa-phone-alt"></i>
                         </div>
@@ -81,7 +81,7 @@
                     @endif
                     
                     @if($email)
-                    <div class="flex items-start gap-4">
+                    <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="feature-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
@@ -93,7 +93,7 @@
                     @endif
                     
                     @if($address)
-                    <div class="flex items-start gap-4">
+                    <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="300">
                         <div class="feature-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
@@ -104,7 +104,7 @@
                     </div>
                     @endif
                     
-                    <div class="flex items-start gap-4">
+                    <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="400">
                         <div class="feature-icon">
                             <i class="fas fa-clock"></i>
                         </div>
@@ -116,7 +116,7 @@
                 </div>
                 
                 <!-- Trust Badge -->
-                <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center" data-aos="zoom-in" data-aos-delay="500">
                     <div class="flex justify-center gap-1 text-yellow-400 mb-2">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -132,7 +132,7 @@
 </section>
 
 <!-- Section 3: FAQ Preview -->
-<section class="bg-white">
+<section class="bg-white" data-aos="fade-up">
     <div class="container-custom mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
@@ -143,8 +143,8 @@
 </section>
 
 <!-- Section 4: Final CTA -->
-<section style="background-color: #1A4F8B;" class="text-white text-center">
-    <div class="container-custom mx-auto">
+<section style="background-color: #1A4F8B;" class="text-white text-center" data-aos="zoom-in-up">
+    <div class="container-custom mx-auto py-12">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Improve Your Revenue Cycle?</h2>
         <p class="text-white/90 text-lg mb-8">Schedule a free consultation with our billing experts today.</p>
         <a href="/contact" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition inline-flex items-center gap-2">

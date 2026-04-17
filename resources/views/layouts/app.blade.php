@@ -26,6 +26,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="@yield('canonical', url()->current())">
     
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
     <!-- Font Awesome 6 (Free CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -60,5 +63,13 @@
     </main>
     
     @include('layouts.footer')
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: false,
+            offset: 100
+        });
+    </script>
 </body>
 </html>

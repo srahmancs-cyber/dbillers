@@ -10,7 +10,7 @@
 
 @section('content')
     <!-- Section 1: Hero -->
-    <section class="relative overflow-hidden">
+    <section class="relative overflow-hidden" data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Left Column -->
@@ -67,7 +67,7 @@
     </section>
 
     <!-- Section 2: Overview of Services -->
-    <section>
+    <section data-aos="fade-up" data-aos-delay="100">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'services_overview', 'title', 'Overview of Medical Billing Services in the USA') }}</h2>
@@ -80,7 +80,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @php $services = pageContent('home', 'services_overview', 'metadata.services', []); @endphp
                 @foreach ($services as $service)
-                    <div class="card">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
                         <div class="feature-icon mb-4">
                             <i class="fas {{ $service['icon'] }} text-2xl"></i>
                         </div>
@@ -94,7 +94,7 @@
     </section>
 
     <!-- Section 3: Medical Claims Billing Service -->
-    <section>
+    <section data-aos="fade-right">
         <div class="container-custom mx-auto">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -139,7 +139,7 @@
     </section>
 
     <!-- Section 4: Specialized Medical Billing Agency -->
-    <section style="background-color: #1A4F8B;">
+    <section style="background-color: #1A4F8B;" data-aos="zoom-in">
         <div class="container-custom mx-auto text-center py-16">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ pageContent('home', 'specialized_agency', 'title') }}</h2>
             <div class="text-white text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
@@ -152,7 +152,7 @@
     </section>
 
     <!-- Section 5: Trust & Ratings -->
-    <section>
+    <section data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'trust_ratings', 'title') }}</h2>
@@ -165,7 +165,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 @php $stats = pageContent('home', 'trust_ratings', 'metadata.stats', []); @endphp
                 @foreach ($stats as $stat)
-                    <div class="text-center">
+                    <div class="text-center" data-aos="flip-up" data-aos-delay="{{ $loop->index * 150 }}">
                         <div class="stat-number">{{ $stat['value'] }}</div>
                         <p class="text-gray-600">{{ $stat['label'] }}</p>
                     </div>
@@ -175,7 +175,7 @@
     </section>
 
     <!-- Section 6: Tech & Expertise -->
-    <section>
+    <section data-aos="fade-left">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'tech_expertise', 'title') }}</h2>
@@ -189,14 +189,14 @@
             <div class="flex flex-wrap justify-center gap-3 mb-12">
                 @php $tags = pageContent('home', 'tech_expertise', 'metadata.tags', []); @endphp
                 @foreach ($tags as $tag)
-                    <span class="tag"><i class="fas fa-check-circle text-primary mr-1"></i> {{ $tag }}</span>
+                    <span class="tag" data-aos="fade-up" data-aos-delay="{{ $loop->index * 50 }}"><i class="fas fa-check-circle text-primary mr-1"></i> {{ $tag }}</span>
                 @endforeach
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
                 @php $cards = pageContent('home', 'tech_expertise', 'metadata.cards', []); @endphp
                 @foreach ($cards as $card)
-                    <div class="card text-center">
+                    <div class="card text-center" data-aos="flip-left" data-aos-delay="{{ $loop->index * 100 }}">
                         <i class="fas {{ $card['icon'] }} text-5xl text-primary mb-4"></i>
                         <div class="stat-number">{{ $card['value'] }}</div>
                         <p class="font-semibold">{{ $card['title'] }}</p>
@@ -214,7 +214,7 @@
     </section>
 
     <!-- Section 7: Pricing Offer -->
-    <section>
+    <section data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'pricing_offer', 'title') }}</h2>
@@ -227,7 +227,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 @php $features = pageContent('home', 'pricing_offer', 'metadata.features', []); @endphp
                 @foreach ($features as $feature)
-                    <div class="card text-center">
+                    <div class="card text-center" data-aos="zoom-in-up" data-aos-delay="{{ $loop->index * 100 }}">
                         <i class="fas {{ $feature['icon'] }} text-3xl text-primary mb-3"></i>
                         <p class="font-semibold">{{ $feature['text'] }}</p>
                     </div>
@@ -243,7 +243,7 @@
     </section>
 
     <!-- Section 8: Dedicated Team -->
-    <section>
+    <section data-aos="fade-right">
         <div class="container-custom mx-auto">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -270,10 +270,10 @@
     </section>
 
     <!-- Section 9: Provider Challenges (Form Section) -->
-    <section class="bg-alt">
+    <section class="bg-alt" data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="grid md:grid-cols-2 gap-12">
-                <div>
+                <div data-aos="fade-right">
                     <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ pageContent('home', 'provider_challenges', 'title') }}</h2>
                     <div class="space-y-3" id="challengesList">
                         @php $challenges = pageContent('home', 'provider_challenges', 'metadata.challenges', []); @endphp
@@ -285,7 +285,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div>
+                <div data-aos="fade-left">
                     <div class="card">
                         <h3 class="text-2xl font-bold mb-4">Free Consultation</h3>
                         <form action="{{ route('contact.submit') }}" method="POST" id="consultationForm">
@@ -322,7 +322,7 @@
     </script>
 
     <!-- Section 10: Specialty Medical Billing -->
-    <section>
+    <section data-aos="zoom-in">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'specialty_billing', 'title') }}</h2>
@@ -335,14 +335,14 @@
             <div class="flex flex-wrap justify-center gap-4">
                 @php $specialties = pageContent('home', 'specialty_billing', 'metadata.specialties', []); @endphp
                 @foreach ($specialties as $specialty)
-                    <span class="tag"><i class="fas fa-stethoscope text-primary mr-2"></i> {{ $specialty }}</span>
+                    <span class="tag" data-aos="fade-up" data-aos-delay="{{ $loop->index * 50 }}"><i class="fas fa-stethoscope text-primary mr-2"></i> {{ $specialty }}</span>
                 @endforeach
             </div>
         </div>
     </section>
 
     <!-- Section 11: Nationwide Availability -->
-    <section>
+    <section data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'nationwide', 'title') }}</h2>
@@ -357,7 +357,7 @@
                 <div class="flex flex-wrap justify-center gap-3">
                     @php $locations = pageContent('home', 'nationwide', 'metadata.locations', []); @endphp
                     @foreach ($locations as $location)
-                        <span class="tag">{{ $location }}</span>
+                        <span class="tag" data-aos="flip-up" data-aos-delay="{{ $loop->index * 30 }}">{{ $location }}</span>
                     @endforeach
                 </div>
             </div>
@@ -365,7 +365,7 @@
     </section>
 
     <!-- Section 12: Affordable Pricing Comparison -->
-    <section>
+    <section data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'pricing_comparison', 'title') }}</h2>
@@ -377,7 +377,7 @@
 
             <!-- Perks List -->
             <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div>
+                <div data-aos="fade-right">
                     <h3 class="font-bold text-lg mb-4">What's Included:</h3>
                     <div class="grid grid-cols-2 gap-2">
                         @php $included = pageContent('home', 'pricing_comparison', 'metadata.included', []); @endphp
@@ -386,7 +386,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div>
+                <div data-aos="fade-left">
                     <h3 class="font-bold text-lg mb-4">Interactive Pricing Calculator</h3>
                     <div class="mb-4">
                         <label class="block text-sm font-medium mb-2">Monthly Collections: <span id="collectionsValue" class="font-bold text-primary">$100,000</span></label>
@@ -397,7 +397,7 @@
 
             <!-- Comparison Table -->
             <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <div class="pricing-table">
+                <div class="pricing-table" data-aos="flip-left" data-aos-delay="0">
                     <table class="w-full">
                         <tr>
                             <th colspan="2">In-House Billing Costs</th>
@@ -416,7 +416,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="pricing-table">
+                <div class="pricing-table" data-aos="flip-left" data-aos-delay="100">
                     <table class="w-full">
                         <tr>
                             <th colspan="2">DBillers Full Service</th>
@@ -431,7 +431,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="savings-box">
+                <div class="savings-box" data-aos="flip-left" data-aos-delay="200">
                     <i class="fas fa-dollar-sign text-3xl mb-2"></i>
                     <div class="text-3xl font-bold" id="savingsAmount">$33,482</div>
                     <p>Annual Savings with DBillers</p>
@@ -470,7 +470,7 @@
     </script>
 
     <!-- Section 13: Testimonials -->
-    <section>
+    <section data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'testimonials', 'title') }}</h2>
@@ -480,7 +480,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 @php $testimonials = pageContent('home', 'testimonials', 'metadata.testimonials', []); @endphp
                 @foreach ($testimonials as $testimonial)
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="flip-up" data-aos-delay="{{ $loop->index * 100 }}">
                         <div class="testimonial-stars">
                             @for ($i = 1; $i <= floor($testimonial['stars']); $i++)
                                 <i class="fas fa-star"></i>
@@ -508,7 +508,7 @@
     </section>
 
     <!-- Section 14: FAQ Accordion -->
-    <section>
+    <section data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="section-headline">
                 <h2>{{ pageContent('home', 'faq', 'title') }}</h2>
@@ -518,7 +518,7 @@
             <div class="max-w-3xl mx-auto" id="faqContainer">
                 @php $faqs = pageContent('home', 'faq', 'metadata.faqs', []); @endphp
                 @foreach ($faqs as $index => $faq)
-                    <div class="faq-item">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="{{ $index * 50 }}">
                         <div class="faq-question">
                             <span>{{ $faq['question'] }}</span>
                             <i class="fas fa-plus"></i>
@@ -543,7 +543,7 @@
     </script>
 
     <!-- Section 15: Final CTA -->
-    <section class="bg-primary text-white text-center">
+    <section class="bg-primary text-white text-center" data-aos="zoom-in-up">
         <div class="container-custom mx-auto py-16">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ pageContent('home', 'final_cta', 'title') }}</h2>
             <p class="text-white/90 text-lg mb-8">{{ pageContent('home', 'final_cta', 'content') }}</p>
