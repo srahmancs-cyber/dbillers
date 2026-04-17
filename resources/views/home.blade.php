@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('meta_title', pageContent('home', 'hero', 'metadata.meta_title', setting('site_title')))
+@section('meta_description', pageContent('home', 'hero', 'metadata.meta_description', setting('site_description')))
+@section('meta_keywords', pageContent('home', 'hero', 'metadata.meta_keywords', setting('site_keywords')))
+@section('og_title', pageContent('home', 'hero', 'metadata.og_title', pageContent('home', 'hero', 'metadata.meta_title', setting('site_title'))))
+@section('og_description', pageContent('home', 'hero', 'metadata.og_description', pageContent('home', 'hero', 'metadata.meta_description', setting('site_description'))))
+@section('og_url', url()->current())
+@section('canonical', url()->current())
+
 @section('content')
     <!-- Section 1: Hero -->
     <section class="relative overflow-hidden">

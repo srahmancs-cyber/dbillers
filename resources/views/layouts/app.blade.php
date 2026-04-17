@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBillers - Smart Medical Billing for US Healthcare Providers</title>
-    <meta name="description" content="DBillers is a top US medical billing firm - applying best practices in revenue cycle management and clinical coding. We help physicians outsource billing to experts.">
+    
+    <!-- Dynamic Meta Tags -->
+    <title>@yield('meta_title', setting('site_title', 'DBillers - Smart Medical Billing for US Healthcare Providers'))</title>
+    <meta name="description" content="@yield('meta_description', setting('site_description', 'DBillers is a top US medical billing firm - applying best practices in revenue cycle management and clinical coding.'))">
+    <meta name="keywords" content="@yield('meta_keywords', setting('site_keywords', 'medical billing, revenue cycle management, medical coding, healthcare billing'))">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@yield('og_url', url()->current())">
+    <meta property="og:title" content="@yield('og_title', setting('site_title', 'DBillers'))">
+    <meta property="og:description" content="@yield('og_description', setting('site_description', ''))">
+    <meta property="og:image" content="@yield('og_image', setting('og_image', ''))">
+    
+    <!-- X (formerly Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="@yield('og_url', url()->current())">
+    <meta name="twitter:title" content="@yield('og_title', setting('site_title', 'DBillers'))">
+    <meta name="twitter:description" content="@yield('og_description', setting('site_description', ''))">
+    <meta name="twitter:image" content="@yield('og_image', setting('og_image', ''))">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="@yield('canonical', url()->current())">
     
     <!-- Font Awesome 6 (Free CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -14,6 +34,9 @@
     <style>
         [x-cloak] { display: none !important; }
     </style>
+    
+    <!-- Schema.org JSON-LD -->
+    @yield('schema')
 </head>
 <body class="font-sans antialiased bg-white">
     @include('layouts.header')

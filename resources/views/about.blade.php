@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('meta_title', pageContent('about', 'hero', 'metadata.meta_title', 'About DBillers - Medical Billing Experts | Revenue Cycle Management'))
+@section('meta_description', pageContent('about', 'hero', 'metadata.meta_description', 'Learn about DBillers, a leading medical billing company helping healthcare providers maximize revenue with expert RCM services since 2015.'))
+@section('meta_keywords', pageContent('about', 'hero', 'metadata.meta_keywords', 'about DBillers, medical billing company, RCM services, healthcare billing experts'))
+@section('og_title', pageContent('about', 'hero', 'metadata.og_title', pageContent('about', 'hero', 'metadata.meta_title', 'About DBillers')))
+@section('og_description', pageContent('about', 'hero', 'metadata.og_description', pageContent('about', 'hero', 'metadata.meta_description', 'Learn about DBillers medical billing experts')))
+@section('og_url', url()->current())
+@section('canonical', url()->current())
+
 @section('content')
     <!-- Section 1: Hero -->
     <section class="bg-white">

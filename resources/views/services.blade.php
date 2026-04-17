@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('meta_title', pageContent('services', 'hero', 'metadata.meta_title', 'Medical Billing Services - Revenue Cycle Management | DBillers'))
+@section('meta_description', pageContent('services', 'hero', 'metadata.meta_description', 'Comprehensive medical billing services including coding, claim submission, denial management, and RCM. Maximize your practice revenue with DBillers.'))
+@section('meta_keywords', pageContent('services', 'hero', 'metadata.meta_keywords', 'medical billing services, revenue cycle management, medical coding, claim submission, denial management, RCM services'))
+@section('og_title', pageContent('services', 'hero', 'metadata.og_title', pageContent('services', 'hero', 'metadata.meta_title', 'Medical Billing Services')))
+@section('og_description', pageContent('services', 'hero', 'metadata.og_description', pageContent('services', 'hero', 'metadata.meta_description', 'Comprehensive medical billing services')))
+@section('og_url', url()->current())
+@section('canonical', url()->current())
+
 @section('content')
     <!-- Section 1: Hero -->
     <section class="bg-white">

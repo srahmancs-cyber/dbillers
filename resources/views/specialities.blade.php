@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('meta_title', pageContent('specialities', 'hero', 'metadata.meta_title', 'Medical Specialities Billing - Expert RCM Services | DBillers'))
+@section('meta_description', pageContent('specialities', 'hero', 'metadata.meta_description', 'Specialized medical billing services across 50+ specialities including cardiology, orthopedics, dermatology, and more. Revenue cycle management tailored to your practice.'))
+@section('meta_keywords', pageContent('specialities', 'hero', 'metadata.meta_keywords', 'medical specialities billing, cardiology billing, orthopedics billing, dermatology billing, RCM services'))
+@section('og_title', pageContent('specialities', 'hero', 'metadata.og_title', pageContent('specialities', 'hero', 'metadata.meta_title', 'Medical Specialities Billing')))
+@section('og_description', pageContent('specialities', 'hero', 'metadata.og_description', pageContent('specialities', 'hero', 'metadata.meta_description', 'Specialized medical billing services')))
+@section('og_url', url()->current())
+@section('canonical', url()->current())
+
 @section('content')
     <!-- Section 1: Hero -->
     <section class="bg-white">

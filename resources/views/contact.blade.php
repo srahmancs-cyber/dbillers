@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('meta_title', pageContent('contact', 'hero', 'metadata.meta_title', 'Contact DBillers - Medical Billing Experts | Free Consultation'))
+@section('meta_description', pageContent('contact', 'hero', 'metadata.meta_description', 'Contact DBillers for expert medical billing services. Get a free consultation and discover how we can maximize your practice revenue. Call or email us today.'))
+@section('meta_keywords', pageContent('contact', 'hero', 'metadata.meta_keywords', 'contact medical billing, free consultation, revenue cycle management'))
+@section('og_title', pageContent('contact', 'hero', 'metadata.og_title', pageContent('contact', 'hero', 'metadata.meta_title', 'Contact DBillers')))
+@section('og_description', pageContent('contact', 'hero', 'metadata.og_description', pageContent('contact', 'hero', 'metadata.meta_description', 'Contact DBillers for free consultation')))
+@section('og_url', url()->current())
+@section('canonical', pageContent('contact', 'hero', 'metadata.canonical_url', url()->current()))
+
 @section('content')
 
 <!-- Section 1: Hero -->

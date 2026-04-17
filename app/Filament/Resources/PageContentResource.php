@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class PageContentResource extends Resource
 {
@@ -18,6 +19,8 @@ class PageContentResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $isSuperAdmin = Auth::user() && Auth::user()->role === 'super_admin';
+
         return $form
             ->schema([
                 Forms\Components\Tabs::make('Content')
@@ -31,14 +34,21 @@ class PageContentResource extends Resource
                                         'services' => 'Services Page',
                                         'specialities' => 'Specialities Page',
                                         'contact' => 'Contact Page',
+                                        'privacy' => 'Privacy Policy Page',
+                                        'terms' => 'Terms of Service Page',
                                     ])
-                                    ->required(),
+                                    ->required()
+                                    ->disabled(!$isSuperAdmin)
+                                    ->helperText($isSuperAdmin ? 'Select which page this content belongs to' : 'Read only. Contact super admin to change.'),
                                 Forms\Components\TextInput::make('section')
                                     ->required()
-                                    ->helperText('Unique identifier for this section'),
+                                    ->disabled(!$isSuperAdmin)
+                                    ->helperText($isSuperAdmin ? 'Unique identifier for this section' : 'Read only. Changing this breaks the page. Contact super admin.'),
                                 Forms\Components\TextInput::make('order')
                                     ->numeric()
-                                    ->default(0),
+                                    ->default(0)
+                                    ->disabled(!$isSuperAdmin)
+                                    ->helperText($isSuperAdmin ? 'Order in which sections appear (lower numbers first)' : 'Read only. Contact super admin to change ordering.'),
                                 Forms\Components\Toggle::make('is_active')
                                     ->label('Show this section')
                                     ->default(true),
@@ -60,6 +70,37 @@ class PageContentResource extends Resource
                                     ->label('Section Image')
                                     ->image()
                                     ->directory('page-images'),
+                            ]),
+                        
+                        Forms\Components\Tabs\Tab::make('SEO Settings')
+                            ->schema([
+                                Forms\Components\Grid::make(2)
+                                    ->schema([
+                                        Forms\Components\TextInput::make('metadata.meta_title')
+                                            ->label('Meta Title')
+                                            ->helperText('Recommended: 50-60 characters. Leave blank to use default.'),
+                                        Forms\Components\TextInput::make('metadata.meta_description')
+                                            ->label('Meta Description')
+                                            ->helperText('Recommended: 150-160 characters. Leave blank to use default.'),
+                                        Forms\Components\TextInput::make('metadata.meta_keywords')
+                                            ->label('Meta Keywords')
+                                            ->helperText('Comma-separated keywords. Leave blank to use default.'),
+                                        Forms\Components\TextInput::make('metadata.og_title')
+                                            ->label('OG Title (Facebook/X)')
+                                            ->helperText('Leave blank to use Meta Title.'),
+                                        Forms\Components\Textarea::make('metadata.og_description')
+                                            ->label('OG Description (Facebook/X)')
+                                            ->rows(2)
+                                            ->helperText('Leave blank to use Meta Description.'),
+                                        Forms\Components\FileUpload::make('metadata.og_image')
+                                            ->label('OG Image')
+                                            ->image()
+                                            ->directory('seo-images')
+                                            ->helperText('Recommended size: 1200x630px for social sharing.'),
+                                        Forms\Components\TextInput::make('metadata.canonical_url')
+                                            ->label('Canonical URL')
+                                            ->helperText('Leave blank to use current URL.'),
+                                    ]),
                             ]),
                         
                         Forms\Components\Tabs\Tab::make('Hero Settings')
@@ -144,6 +185,8 @@ class PageContentResource extends Resource
                         'services' => 'Services',
                         'specialities' => 'Specialities',
                         'contact' => 'Contact',
+                        'privacy' => 'Privacy Policy',
+                        'terms' => 'Terms of Service',
                     ]),
             ])
             ->actions([
@@ -159,5 +202,15 @@ class PageContentResource extends Resource
             'create' => Pages\CreatePageContent::route('/create'),
             'edit' => Pages\EditPageContent::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return Auth::user() && Auth::user()->role === 'super_admin';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return Auth::user() && Auth::user()->role === 'super_admin';
     }
 }
