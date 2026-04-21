@@ -1,8 +1,8 @@
-<header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
-    <div class="px-4 mx-auto">
-        <div class="flex justify-between items-center py-3">
+<header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+    <div class="container-custom mx-auto">
+        <div class="flex justify-between items-center py-4">
             <!-- Logo -->
-            <a href="/" class="text-xl md:text-2xl font-bold" style="color: #1A4F8B;">
+            <a href="/" class="text-2xl md:text-3xl font-bold text-gray-900 hover:text-gray-700 transition">
                 {{ setting('company_name', 'DBillers') }}
             </a>
             
@@ -19,7 +19,7 @@
                 @endphp
                 @foreach($navItems as $url => $label)
                     <a href="{{ $url }}" 
-                       class="text-gray-700 hover:text-[#1A4F8B] font-medium transition relative group">
+                       class="text-gray-600 hover:text-[#1A4F8B] font-medium transition relative group">
                         {{ $label }}
                         <span class="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-[#1A4F8B] transition-all group-hover:w-full"></span>
                     </a>
@@ -29,14 +29,14 @@
             <!-- CTA Button Desktop -->
             <div class="hidden md:block">
                 <a href="/contact" 
-                   class="bg-[#1A4F8B] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#0E3A6B] transition shadow-md">
+                   class="bg-[#1A4F8B] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#0E3A6B] transition shadow-md hover:shadow-lg">
                     Get Quote
                 </a>
             </div>
             
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 active:bg-gray-100 transition">
-                <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="mobile-menu-button" class="md:hidden text-gray-900 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
@@ -45,8 +45,8 @@
     
     <!-- Mobile Slide-out Menu -->
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-50 hidden" style="opacity:0; transition:opacity 0.3s ease;"></div>
-    <div id="mobile-menu-panel" class="fixed top-0 right-0 w-full max-w-sm h-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="p-6 pt-12">
+    <div id="mobile-menu-panel" class="fixed top-0 right-0 w-full h-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="p-4 pt-12">
             <!-- Close Button -->
             <button id="mobile-menu-close" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100">
                 <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,7 +65,7 @@
                 <a href="/privacy-policy" class="mobile-menu-item text-gray-500 py-2 px-4 text-sm">Privacy Policy</a>
                 <a href="/terms-of-service" class="mobile-menu-item text-gray-500 py-2 px-4 text-sm">Terms of Service</a>
                 <div class="pt-4 mt-2">
-                    <a href="/contact" class="bg-[#1A4F8B] text-white px-6 py-3 rounded-xl font-semibold text-center block">
+                    <a href="/contact" class="bg-[#1A4F8B] text-white px-3 py-2 rounded-lg text-sm mx-4 w-auto font-semibold text-center block">
                         Free Consultation
                     </a>
                 </div>
