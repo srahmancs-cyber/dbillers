@@ -52,7 +52,59 @@
         [x-cloak] { display: none !important; }
     </style>
     
-    <!-- Schema.org JSON-LD -->
+    <!-- Schema.org JSON-LD for Sitelinks -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DBillers",
+        "url": "https://dbillers.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://dbillers.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "DBillers",
+        "url": "https://dbillers.com",
+        "logo": "https://dbillers.com/logo.png",
+        "sameAs": [
+            "https://www.linkedin.com/company/dbillers",
+            "https://twitter.com/dbillers",
+            "https://www.facebook.com/dbillers"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "{{ setting('company_phone', '+1-800-XXX-XXXX') }}",
+            "contactType": "customer service",
+            "availableLanguage": "English"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SiteNavigationElement",
+        "name": ["Home", "About", "Services", "Specialities", "Contact", "Privacy Policy", "Terms of Service"],
+        "url": [
+            "https://dbillers.com/",
+            "https://dbillers.com/about",
+            "https://dbillers.com/services",
+            "https://dbillers.com/specialities",
+            "https://dbillers.com/contact",
+            "https://dbillers.com/privacy-policy",
+            "https://dbillers.com/terms-of-service"
+        ]
+    }
+    </script>
+    
     @yield('schema')
 </head>
 <body class="font-sans antialiased bg-white">
