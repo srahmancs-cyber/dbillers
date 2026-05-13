@@ -17,6 +17,7 @@ class SettingsSeeder extends Seeder
             ['key' => 'facebook_url', 'value' => 'https://facebook.com/dbillers'],
             ['key' => 'twitter_url', 'value' => 'https://twitter.com/dbillers'],
             ['key' => 'linkedin_url', 'value' => 'https://linkedin.com/company/dbillers'],
+            ['key' => 'logo', 'value' => null],
         ];
 
         foreach ($settings as $setting) {
