@@ -55,19 +55,25 @@
                     @if(setting('company_phone'))
                         <li class="flex items-center gap-2">
                             <i class="fas fa-phone-alt w-4 text-gray-500"></i>
-                            <span>{{ setting('company_phone') }}</span>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', setting('company_phone')) }}" class="hover:text-white transition">
+                                {{ setting('company_phone') }}
+                            </a>
                         </li>
                     @endif
                     @if(setting('company_email'))
                         <li class="flex items-center gap-2">
                             <i class="fas fa-envelope w-4 text-gray-500"></i>
-                            <span>{{ setting('company_email') }}</span>
+                            <a href="mailto:{{ setting('company_email') }}" class="hover:text-white transition">
+                                {{ setting('company_email') }}
+                            </a>
                         </li>
                     @endif
                     @if(setting('company_address'))
                         <li class="flex items-start gap-2">
                             <i class="fas fa-map-marker-alt w-4 text-gray-500 mt-0.5"></i>
-                            <span>{{ setting('company_address') }}</span>
+                            <a href="https://maps.google.com/?q={{ urlencode(setting('company_address')) }}" target="_blank" class="hover:text-white transition">
+                                {{ setting('company_address') }}
+                            </a>
                         </li>
                     @endif
                 </ul>

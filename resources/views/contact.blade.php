@@ -75,7 +75,9 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
-                            <p class="text-gray-600">{{ $phone }}</p>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $phone) }}" class="text-gray-600 hover:text-primary transition">
+                                {{ $phone }}
+                            </a>
                         </div>
                     </div>
                     @endif
@@ -87,7 +89,9 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
-                            <p class="text-gray-600">{{ $email }}</p>
+                            <a href="mailto:{{ $email }}" class="text-gray-600 hover:text-primary transition">
+                                {{ $email }}
+                            </a>
                         </div>
                     </div>
                     @endif
@@ -99,7 +103,9 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">Address</h3>
-                            <p class="text-gray-600">{{ $address }}</p>
+                            <a href="https://maps.google.com/?q={{ urlencode($address) }}" target="_blank" class="text-gray-600 hover:text-primary transition">
+                                {{ $address }}
+                            </a>
                         </div>
                     </div>
                     @endif
