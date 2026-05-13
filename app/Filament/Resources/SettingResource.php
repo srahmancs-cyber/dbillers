@@ -42,8 +42,8 @@ class SettingResource extends Resource
                     ->maxLength(65535)
                     ->hidden(fn ($get) => $get('key') === 'logo'),
                 
-                // For logo setting - separate field name to avoid conflict
-                Forms\Components\FileUpload::make('logo_file')
+                // For logo setting - file upload stores directly to 'value'
+                Forms\Components\FileUpload::make('value')
                     ->label('Logo')
                     ->image()
                     ->directory('logos')
@@ -53,14 +53,6 @@ class SettingResource extends Resource
                     ->multiple(false)
                     ->maxFiles(1)
                     ->hidden(fn ($get) => $get('key') !== 'logo')
-                    ->afterStateUpdated(function ($state, callable $set) {
-                        if (is_array($state)) {
-                            $set('value', $state[0] ?? null);
-                        } elseif (is_string($state)) {
-                            $set('value', $state);
-                        }
-                    })
-                    ->dehydrated(false)
                     ->columnSpanFull(),
             ]);
     }
