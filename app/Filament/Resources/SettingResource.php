@@ -44,6 +44,8 @@ class SettingResource extends Resource
                     ->visibility('public')
                     ->maxSize(1024)
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                    ->multiple(false)
+                    ->maxFiles(1)
                     ->hidden(fn ($get) => $get('key') !== 'logo')
                     ->columnSpanFull(),
                 
