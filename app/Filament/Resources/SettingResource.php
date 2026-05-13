@@ -35,9 +35,23 @@ class SettingResource extends Resource
                     ->required()
                     ->disabled()
                     ->maxLength(255),
+                
+                // Special handling for logo - use file upload
+                Forms\Components\FileUpload::make('value')
+                    ->label('Logo')
+                    ->image()
+                    ->directory('logos')
+                    ->visibility('public')
+                    ->maxSize(1024)
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                    ->hidden(fn ($get) => $get('key') !== 'logo')
+                    ->columnSpanFull(),
+                
+                // For other settings, use text input
                 Forms\Components\TextInput::make('value')
                     ->required()
-                    ->maxLength(65535),
+                    ->maxLength(65535)
+                    ->hidden(fn ($get) => $get('key') === 'logo'),
             ]);
     }
 
@@ -46,7 +60,15 @@ class SettingResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('key')->searchable(),
-                Tables\Columns\TextColumn::make('value')->limit(50),
+                Tables\Columns\ImageColumn::make('value')
+                    ->label('Logo Preview')
+                    ->circular()
+                    ->height(40)
+                    ->visible(fn ($record) => $record && $record->key === 'logo' && $record->value),
+                Tables\Columns\TextColumn::make('value')
+                    ->label('Value')
+                    ->limit(50)
+                    ->visible(fn ($record) => $record && $record->key !== 'logo'),
                 Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([])

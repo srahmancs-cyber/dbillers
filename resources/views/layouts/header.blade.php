@@ -2,8 +2,15 @@
     <div class="container-custom mx-auto">
         <div class="flex justify-between items-center py-4">
             <!-- Logo -->
-            <a href="/" class="text-2xl md:text-3xl font-bold text-gray-900 hover:text-gray-700 transition">
-                {{ setting('company_name', 'DBillers') }}
+            @php $logo = setting('logo'); @endphp
+            <a href="/" class="flex items-center">
+                @if($logo && $logo != 'null' && $logo != '')
+                    <img src="{{ $logo }}" alt="{{ setting('company_name', 'DBillers') }}" class="h-8 md:h-10 w-auto object-contain">
+                @else
+                    <span class="text-2xl md:text-3xl font-bold text-gray-900 hover:text-gray-700 transition">
+                        {{ setting('company_name', 'DBillers') }}
+                    </span>
+                @endif
             </a>
             
             <!-- Desktop Navigation -->
@@ -65,7 +72,7 @@
                 <a href="/privacy-policy" class="mobile-menu-item text-gray-500 py-2 px-4 text-sm">Privacy Policy</a>
                 <a href="/terms-of-service" class="mobile-menu-item text-gray-500 py-2 px-4 text-sm">Terms of Service</a>
                 <div class="pt-4 mt-2">
-                    <a href="/contact" class="bg-[#1A4F8B] text-white px-3 py-2 rounded-lg text-sm mx-4 w-auto font-semibold text-center block">
+                    <a href="/contact" class="bg-[#1A4F8B] text-white px-4 py-2 rounded-lg text-sm text-center block">
                         Free Consultation
                     </a>
                 </div>

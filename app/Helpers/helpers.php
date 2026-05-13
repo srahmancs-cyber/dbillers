@@ -4,7 +4,16 @@ if (!function_exists('setting')) {
     function setting($key, $default = null) {
         try {
             $setting = \App\Models\Setting::where('key', $key)->first();
-            return $setting ? $setting->value : $default;
+            if (!$setting) return $default;
+            
+            $value = $setting->value;
+            
+            // Special handling for logo - return full R2 URL
+            if ($key === 'logo' && $value && !str_starts_with($value, 'http')) {
+                return \Storage::disk('r2')->url($value);
+            }
+            
+            return $value;
         } catch (\Exception $e) {
             return $default;
         }
