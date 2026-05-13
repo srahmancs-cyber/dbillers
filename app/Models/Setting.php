@@ -12,4 +12,14 @@ class Setting extends Model
     protected $fillable = [
         'key', 'value'
     ];
+
+    // Mutator to handle array from FileUpload component
+    public function setValueAttribute($value)
+    {
+        if (is_array($value)) {
+            $this->attributes['value'] = $value[0] ?? null;
+        } else {
+            $this->attributes['value'] = $value;
+        }
+    }
 }
