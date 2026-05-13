@@ -47,6 +47,8 @@ class SettingResource extends Resource
                     ->multiple(false)
                     ->maxFiles(1)
                     ->hidden(fn ($get) => $get('key') !== 'logo')
+                    ->mutateDehydratedStateUsing(fn ($state) => is_array($state) ? ($state[0] ?? null) : $state)
+                    ->dehydrated(fn ($state) => !is_null($state))
                     ->columnSpanFull(),
                 
                 // For other settings, use text input
