@@ -26,23 +26,30 @@
 
         /* Typography */
         .hero-left h1 {
-            font-size: clamp(1.75rem, 4vw, 3.5rem);
-            font-weight: 700;
+            font-size: 3.25rem;
+            font-weight: 800;
             color: #1E2A3A;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.125rem;
         }
         .hero-left .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: 1.25rem;
             font-weight: 600;
             color: #1A4F8B;
             margin-bottom: 1rem;
         }
         .hero-left .hero-body {
             color: #4A5568;
-            line-height: 1.7;
+            line-height: 1.75;
             margin-bottom: 1.75rem;
-            font-size: 1rem;
+            font-size: 1.0625rem;
+        }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .hero-left h1       { font-size: 2.625rem; }
+            .hero-left .hero-subtitle { font-size: 1.125rem; }
         }
 
         /* Buttons row */
@@ -147,8 +154,8 @@
                 width: 100%;
                 flex: none;
             }
-            .hero-left h1  { font-size: 1.75rem; }
-            .hero-left .hero-subtitle { font-size: 1rem; }
+            .hero-left h1        { font-size: 2rem; letter-spacing: -0.01em; line-height: 1.2; }
+            .hero-left .hero-subtitle { font-size: 1.0625rem; }
             .hero-left .hero-body { font-size: 0.9375rem; margin-bottom: 1.25rem; }
 
             /* Stack buttons full-width on mobile */
@@ -188,7 +195,7 @@
 
         /* ── Small mobile (≤ 400px) ── */
         @media (max-width: 400px) {
-            .hero-left h1 { font-size: 1.5rem; }
+            .hero-left h1 { font-size: 1.75rem; }
         }
     </style>
 
