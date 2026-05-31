@@ -12,7 +12,7 @@
     <!-- Section 1: Hero -->
     <style>
         /* ── Hero layout ── */
-        .hero-section { overflow: hidden; }
+        .hero-section { overflow: clip; } /* clip instead of hidden — doesn't break sticky */
 
         .hero-inner {
             display: flex;
