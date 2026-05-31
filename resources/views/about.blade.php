@@ -33,7 +33,7 @@
                         {!! nl2br(pageContent('about', 'our_story', 'content')) !!}
                     </div>
 
-                    <div class="grid grid-cols-3 gap-4 mt-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                         @php $stats = pageContent('about', 'our_story', 'metadata.stats', []); @endphp
                         @foreach ($stats as $stat)
                             <div class="text-center" data-aos="flip-up" data-aos-delay="{{ $loop->index * 100 }}">

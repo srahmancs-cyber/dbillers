@@ -24,6 +24,66 @@
     </section>
 
     <!-- Section 2: Our Popular Specialties -->
+    <style>
+        /* ── Specialties grid ── */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .spec-card {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1.75rem 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .spec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0,0,0,.15);
+        }
+        .spec-card i {
+            font-size: 2.75rem;
+            color: #1A4F8B;
+            display: block;
+            margin-bottom: 0.875rem;
+        }
+        .spec-card h3 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: #1E2A3A;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Tablet: 3 columns */
+        @media (max-width: 1024px) {
+            .spec-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Large mobile: 2 columns */
+        @media (max-width: 767px) {
+            .spec-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.875rem;
+            }
+            .spec-card { padding: 1.25rem 0.75rem; }
+            .spec-card i { font-size: 2.25rem; margin-bottom: 0.625rem; }
+            .spec-card h3 { font-size: 0.875rem; }
+        }
+
+        /* Small mobile: still 2 columns, tighter */
+        @media (max-width: 400px) {
+            .spec-grid { gap: 0.625rem; }
+            .spec-card { padding: 1rem 0.5rem; }
+            .spec-card i { font-size: 1.875rem; }
+            .spec-card h3 { font-size: 0.8125rem; }
+        }
+    </style>
+
     <section class="bg-light" data-aos="fade-up">
         <div class="container-custom mx-auto">
             <div class="section-headline">
@@ -34,12 +94,12 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="spec-grid">
                 @php $specialties = pageContent('specialities', 'popular_specialties', 'metadata.specialties', []); @endphp
                 @foreach ($specialties as $specialty)
-                    <div class="card text-center" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 50 }}">
-                        <i class="fas {{ $specialty['icon'] }} text-5xl text-primary mb-4"></i>
-                        <h3 class="text-lg font-bold text-gray-900">{{ $specialty['name'] }}</h3>
+                    <div class="spec-card" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 50 }}">
+                        <i class="fas {{ $specialty['icon'] }}"></i>
+                        <h3>{{ $specialty['name'] }}</h3>
                     </div>
                 @endforeach
             </div>

@@ -10,58 +10,237 @@
 
 @section('content')
     <!-- Section 1: Hero -->
-    <section class="relative overflow-hidden" data-aos="fade-up">
+    <style>
+        /* ── Hero layout ── */
+        .hero-section { overflow: hidden; }
+
+        .hero-inner {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .hero-left  { flex: 1 1 0; min-width: 0; }
+        .hero-right { flex: 1 1 0; min-width: 0; position: relative; }
+
+        /* Typography */
+        .hero-left h1 {
+            font-size: clamp(1.75rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: #1E2A3A;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .hero-left .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 600;
+            color: #1A4F8B;
+            margin-bottom: 1rem;
+        }
+        .hero-left .hero-body {
+            color: #4A5568;
+            line-height: 1.7;
+            margin-bottom: 1.75rem;
+            font-size: 1rem;
+        }
+
+        /* Buttons row */
+        .hero-btns {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+        .hero-btns a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+        .hero-btns .btn-hero-primary {
+            background: #1A4F8B;
+            color: #fff;
+            border: 2px solid #1A4F8B;
+        }
+        .hero-btns .btn-hero-primary:hover { background: #0E3A6B; border-color: #0E3A6B; }
+        .hero-btns .btn-hero-secondary {
+            background: transparent;
+            color: #1A4F8B;
+            border: 2px solid #1A4F8B;
+        }
+        .hero-btns .btn-hero-secondary:hover { background: #1A4F8B; color: #fff; }
+
+        /* Trust badges */
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.625rem;
+        }
+        .hero-badge {
+            padding: 0.5rem 0.875rem;
+            background: #F8F9FA;
+            border-radius: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #1E2A3A;
+            white-space: nowrap;
+        }
+
+        /* Image side */
+        .hero-img-box {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
+            display: block;
+            height: auto;
+        }
+        .hero-placeholder {
+            width: 100%;
+            min-height: 320px;
+            background: #f3f4f6;
+            border-radius: 1rem;
+            border: 2px dashed #d1d5db;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        .hero-float-icon {
+            position: absolute;
+            bottom: -1.25rem;
+            left: -1.25rem;
+            background: #1A4F8B;
+            color: #fff;
+            padding: 0.875rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,.18);
+            font-size: 1.75rem;
+            line-height: 1;
+            z-index: 10;
+        }
+
+        /* ── Tablet (≤ 900px) ── */
+        @media (max-width: 900px) {
+            .hero-inner { gap: 2rem; }
+            .hero-left h1 { font-size: clamp(1.625rem, 3.5vw, 2.5rem); }
+        }
+
+        /* ── Mobile (≤ 767px) ── */
+        @media (max-width: 767px) {
+            .hero-inner {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .hero-left, .hero-right {
+                width: 100%;
+                flex: none;
+            }
+            .hero-left h1  { font-size: 1.75rem; }
+            .hero-left .hero-subtitle { font-size: 1rem; }
+            .hero-left .hero-body { font-size: 0.9375rem; margin-bottom: 1.25rem; }
+
+            /* Stack buttons full-width on mobile */
+            .hero-btns {
+                flex-direction: column;
+                gap: 0.625rem;
+            }
+            .hero-btns a {
+                width: 100%;
+                justify-content: center;
+                padding: 0.875rem 1rem;
+            }
+
+            /* Badges scroll horizontally */
+            .hero-badges {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding-bottom: 0.25rem;
+            }
+            .hero-badges::-webkit-scrollbar { display: none; }
+
+            /* Float icon stays inside on mobile */
+            .hero-float-icon {
+                bottom: -0.75rem;
+                left: -0.5rem;
+                padding: 0.625rem;
+                font-size: 1.375rem;
+                border-radius: 0.625rem;
+            }
+            /* Add bottom padding so float icon doesn't overlap content below */
+            .hero-right { padding-bottom: 1.25rem; }
+
+            .hero-placeholder { min-height: 220px; }
+        }
+
+        /* ── Small mobile (≤ 400px) ── */
+        @media (max-width: 400px) {
+            .hero-left h1 { font-size: 1.5rem; }
+        }
+    </style>
+
+    <section class="hero-section" data-aos="fade-up">
         <div class="container-custom mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Left Column -->
-                <div class="animate-fade-in-up">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4">
-                        {{ pageContent('home', 'hero', 'title', 'DBillers | Smart Medical Billing for US Healthcare Providers') }}
-                    </h1>
-                    <p class="text-xl text-primary font-semibold mb-4">
-                        {{ pageContent('home', 'hero', 'subtitle', 'The Medical Billing Service Provider for USA Healthcare') }}
-                    </p>
-                    <div class="text-gray-600 mb-8 leading-relaxed">
+            <div class="hero-inner">
+
+                <!-- Left: Text -->
+                <div class="hero-left animate-fade-in-up">
+                    <h1>{{ pageContent('home', 'hero', 'title', 'DBillers | Smart Medical Billing for US Healthcare Providers') }}</h1>
+                    <p class="hero-subtitle">{{ pageContent('home', 'hero', 'subtitle', 'The Medical Billing Service Provider for USA Healthcare') }}</p>
+                    <div class="hero-body">
                         {!! pageContent('home', 'hero', 'content', 'DBillers is a top US medical billing firm – applying best practices in revenue cycle management and clinical coding. We help physicians outsource billing and coding to an expert third-party agency. Our certified coders and billers also assist healthcare organizations in recovering aged receivables and resolving insurance claim denials.') !!}
                     </div>
 
                     <!-- Buttons -->
-                    <div class="flex flex-wrap gap-4 mb-8">
+                    <div class="hero-btns">
                         @php $buttons = pageContent('home', 'hero', 'metadata.buttons', []); @endphp
                         @foreach ($buttons as $button)
-                            <a href="{{ $button['url'] }}" class="{{ $loop->first ? 'btn-primary' : 'btn-secondary' }}">
+                            <a href="{{ $button['url'] }}" class="{{ $loop->first ? 'btn-hero-primary' : 'btn-hero-secondary' }}">
                                 {{ $button['text'] }} <i class="fas {{ $button['icon'] }}"></i>
                             </a>
                         @endforeach
                     </div>
 
                     <!-- Trust Badges -->
-                    <div class="trust-badges">
+                    <div class="hero-badges">
                         @php $badges = pageContent('home', 'hero', 'metadata.trust_badges', []); @endphp
                         @foreach ($badges as $badge)
-                            <div class="trust-badge">{{ is_array($badge) ? $badge['value'] : $badge }}</div>
+                            <span class="hero-badge">{{ is_array($badge) ? $badge['value'] : $badge }}</span>
                         @endforeach
                     </div>
                 </div>
 
-                <!-- Right Column - Image -->
-                <div class="relative">
+                <!-- Right: Image -->
+                <div class="hero-right">
                     @php $imageUrl = pageContent('home', 'hero', 'image_url', ''); @endphp
                     @if ($imageUrl && $imageUrl != '')
-                        <img src="{{ $imageUrl }}" alt="Medical billing professionals" class="rounded-2xl shadow-2xl w-full h-auto">
+                        <img src="{{ $imageUrl }}" alt="Medical billing professionals" class="hero-img-box">
                     @else
-                        <div class="bg-gray-100 rounded-2xl shadow-2xl w-full h-96 flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
-                            <i class="fas fa-image text-5xl text-gray-400 mb-3"></i>
-                            <p class="text-gray-500 text-center px-4">No image uploaded</p>
-                            <p class="text-gray-400 text-sm mt-2">Recommended size: 600x500px</p>
-                            <p class="text-gray-400 text-xs">Upload via Admin → Page Content → Hero Settings</p>
+                        <div class="hero-placeholder">
+                            <i class="fas fa-image" style="font-size:2.5rem;"></i>
+                            <p style="font-size:.9375rem;color:#6b7280;">No image uploaded</p>
+                            <p style="font-size:.8125rem;">Recommended: 600×500px</p>
                         </div>
                     @endif
-                    <div class="absolute -bottom-6 -left-6 bg-primary text-white p-4 rounded-xl shadow-lg">
+                    <div class="hero-float-icon">
                         @php $floatingIcon = pageContent('home', 'hero', 'metadata.floating_icon', 'fa-chart-line'); @endphp
-                        <i class="fas {{ $floatingIcon }} text-3xl"></i>
+                        <i class="fas {{ $floatingIcon }}"></i>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -396,7 +575,7 @@
             </div>
 
             <!-- Comparison Table -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="grid md:grid-cols-3 gap-6 mb-8 pricing-comparison-grid">
                 <div class="pricing-table" data-aos="flip-left" data-aos-delay="0">
                     <table class="w-full">
                         <tr>

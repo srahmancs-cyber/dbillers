@@ -1,8 +1,8 @@
 <footer class="bg-gray-900 text-gray-300 pt-12 pb-6 mt-auto">
     <div class="container-custom mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <!-- Company Info -->
-            <div>
+            <div class="sm:col-span-2 md:col-span-1">
                 <h3 class="text-2xl font-bold text-white mb-4">{{ setting('company_name') ?? 'DBillers' }}</h3>
                 <p class="text-gray-400 text-sm mb-4 leading-relaxed">
                     Precision Medical Billing for Healthcare Providers Across America.
@@ -54,23 +54,23 @@
                 <ul class="space-y-2 text-gray-400 text-sm">
                     @if(setting('company_phone'))
                         <li class="flex items-center gap-2">
-                            <i class="fas fa-phone-alt w-4 text-gray-500"></i>
-                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', setting('company_phone')) }}" class="hover:text-white transition">
+                            <i class="fas fa-phone-alt w-4 text-gray-500 flex-shrink-0"></i>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', setting('company_phone')) }}" class="hover:text-white transition break-all">
                                 {{ setting('company_phone') }}
                             </a>
                         </li>
                     @endif
                     @if(setting('company_email'))
                         <li class="flex items-center gap-2">
-                            <i class="fas fa-envelope w-4 text-gray-500"></i>
-                            <a href="mailto:{{ setting('company_email') }}" class="hover:text-white transition">
+                            <i class="fas fa-envelope w-4 text-gray-500 flex-shrink-0"></i>
+                            <a href="mailto:{{ setting('company_email') }}" class="hover:text-white transition break-all">
                                 {{ setting('company_email') }}
                             </a>
                         </li>
                     @endif
                     @if(setting('company_address'))
                         <li class="flex items-start gap-2">
-                            <i class="fas fa-map-marker-alt w-4 text-gray-500 mt-0.5"></i>
+                            <i class="fas fa-map-marker-alt w-4 text-gray-500 mt-0.5 flex-shrink-0"></i>
                             <a href="https://maps.google.com/?q={{ urlencode(setting('company_address')) }}" target="_blank" class="hover:text-white transition">
                                 {{ setting('company_address') }}
                             </a>
@@ -83,7 +83,7 @@
         <!-- Bottom Bar -->
         <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
             <p>&copy; {{ date('Y') }} {{ setting('company_name') ?? 'DBillers' }}. All rights reserved.</p>
-            <div class="flex justify-center gap-4 mt-2">
+            <div class="flex justify-center gap-4 mt-2 flex-wrap">
                 <a href="/privacy-policy" class="text-gray-500 hover:text-gray-300 transition">Privacy Policy</a>
                 <a href="/terms-of-service" class="text-gray-500 hover:text-gray-300 transition">Terms of Service</a>
             </div>

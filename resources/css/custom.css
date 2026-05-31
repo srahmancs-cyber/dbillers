@@ -25,9 +25,12 @@ body {
     color: var(--text-body);
     line-height: 1.6;
     background: white;
+    overflow-x: hidden;
 }
 
-/* Container */
+/* ============================================
+   CONTAINER
+   ============================================ */
 .container-custom {
     max-width: 1280px;
     margin-left: auto;
@@ -36,66 +39,46 @@ body {
     padding-right: 2rem;
 }
 
-@media (max-width: 1024px) {
-    .container-custom {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .container-custom {
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--text-dark);
     font-weight: 700;
     line-height: 1.3;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
     letter-spacing: -0.02em;
 }
 
 h2 {
-    font-size: 2.25rem;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
     letter-spacing: -0.01em;
     margin-bottom: 1rem;
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     margin-bottom: 0.75rem;
 }
 
-@media (max-width: 768px) {
-    h1 { font-size: 1.75rem; }
-    h2 { font-size: 1.5rem; }
-    h3 { font-size: 1.25rem; }
-}
-
-/* Section Spacing */
+/* ============================================
+   SECTION SPACING
+   ============================================ */
 section {
     padding: 5rem 0;
 }
 
-@media (max-width: 768px) {
-    section {
-        padding: 2.5rem 0;
-    }
-}
-
-/* Section Alternating Backgrounds */
-section:nth-child(even) {
-    background-color: var(--bg-light);
-}
-
-/* Buttons */
+/* ============================================
+   BUTTONS
+   ============================================ */
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -109,12 +92,13 @@ section:nth-child(even) {
     border: none;
     cursor: pointer;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .btn-primary:hover {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary {
@@ -126,10 +110,11 @@ section:nth-child(even) {
     padding: 0.875rem 2rem;
     border-radius: 0.5rem;
     font-weight: 600;
-    border: 1px solid var(--primary);
+    border: 2px solid var(--primary);
     transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .btn-secondary:hover {
@@ -138,47 +123,26 @@ section:nth-child(even) {
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        justify-content: center;
-        padding: 0.875rem 1rem;
-        border-radius: 14px;
-    }
-    
-    .flex-wrap.gap-4 {
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-}
-
-/* Cards */
+/* ============================================
+   CARDS
+   ============================================ */
 .card {
     background: white;
     border-radius: 1rem;
     padding: 1.75rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     height: 100%;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width: 768px) {
-    .card {
-        border-radius: 20px;
-        padding: 1.25rem;
-    }
-    
-    .card:hover {
-        transform: none;
-    }
-}
-
-/* Section Headline */
+/* ============================================
+   SECTION HEADLINE
+   ============================================ */
 .section-headline {
     text-align: center;
     margin-bottom: 3rem;
@@ -196,13 +160,9 @@ section:nth-child(even) {
     border-radius: 2px;
 }
 
-@media (max-width: 768px) {
-    .section-headline {
-        margin-bottom: 1.5rem;
-    }
-}
-
-/* Stats */
+/* ============================================
+   STATS
+   ============================================ */
 .stat-number {
     font-size: 2.5rem;
     font-weight: 800;
@@ -211,51 +171,31 @@ section:nth-child(even) {
     margin-bottom: 0.5rem;
 }
 
-@media (max-width: 768px) {
-    .stat-number {
-        font-size: 2rem;
-    }
-}
-
-/* Trust Badges */
+/* ============================================
+   TRUST BADGES
+   ============================================ */
 .trust-badges {
     display: flex;
     justify-content: flex-start;
-    gap: 1.5rem;
+    gap: 1rem;
     flex-wrap: wrap;
     margin-top: 2rem;
 }
 
 .trust-badge {
     text-align: center;
-    padding: 0.75rem 1.25rem;
+    padding: 0.625rem 1rem;
     background: var(--bg-light);
     border-radius: 0.5rem;
     font-weight: 600;
     color: var(--text-dark);
     font-size: 0.875rem;
+    white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-    .trust-badges {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        gap: 0.75rem;
-        padding-bottom: 0.5rem;
-        margin-top: 1rem;
-    }
-    
-    .trust-badge {
-        flex-shrink: 0;
-        white-space: nowrap;
-        background: white;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
-    }
-}
-
-/* Feature Items */
+/* ============================================
+   FEATURE ITEMS
+   ============================================ */
 .feature-item {
     display: flex;
     gap: 1rem;
@@ -276,17 +216,9 @@ section:nth-child(even) {
     flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-    .feature-item {
-        background: white;
-        padding: 1rem;
-        border-radius: 16px;
-        margin-bottom: 0.75rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-}
-
-/* Tags */
+/* ============================================
+   TAGS
+   ============================================ */
 .tag {
     display: inline-block;
     padding: 0.5rem 1.25rem;
@@ -303,38 +235,22 @@ section:nth-child(even) {
     color: white;
 }
 
-@media (max-width: 768px) {
-    .flex-wrap.justify-center {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
-    
-    .tag {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.75rem;
-        padding: 0.5rem 1rem;
-        background: white;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-}
-
-/* Pricing Table */
+/* ============================================
+   PRICING TABLE
+   ============================================ */
 .pricing-table {
     background: white;
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .pricing-table table {
     width: 100%;
 }
 
-.pricing-table th, .pricing-table td {
+.pricing-table th,
+.pricing-table td {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border);
     text-align: left;
@@ -350,17 +266,9 @@ section:nth-child(even) {
     text-align: right;
 }
 
-@media (max-width: 768px) {
-    .pricing-table {
-        overflow-x: auto;
-    }
-    
-    .pricing-table table {
-        min-width: 300px;
-    }
-}
-
-/* Savings Box */
+/* ============================================
+   SAVINGS BOX
+   ============================================ */
 .savings-box {
     background-color: var(--success);
     color: white;
@@ -377,13 +285,9 @@ section:nth-child(even) {
     font-size: 2.5rem;
 }
 
-@media (max-width: 768px) {
-    .savings-box {
-        padding: 1.5rem;
-    }
-}
-
-/* FAQ */
+/* ============================================
+   FAQ
+   ============================================ */
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1.25rem 0;
@@ -397,11 +301,13 @@ section:nth-child(even) {
     justify-content: space-between;
     align-items: center;
     font-size: 1.1rem;
+    gap: 1rem;
 }
 
 .faq-question i {
     color: var(--primary);
     transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
 .faq-answer {
@@ -415,26 +321,21 @@ section:nth-child(even) {
     display: block;
 }
 
-@media (max-width: 768px) {
-    .faq-question {
-        font-size: 1rem;
-        padding: 0.5rem 0;
-    }
-}
-
-/* Testimonial Card */
+/* ============================================
+   TESTIMONIAL CARDS
+   ============================================ */
 .testimonial-card {
     background: white;
     border-radius: 1rem;
     padding: 1.75rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     height: 100%;
     transition: all 0.3s ease;
 }
 
 .testimonial-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
 }
 
 .testimonial-stars {
@@ -449,18 +350,9 @@ section:nth-child(even) {
     line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-    .testimonial-card {
-        border-radius: 20px;
-        padding: 1.25rem;
-    }
-    
-    .testimonial-card:hover {
-        transform: none;
-    }
-}
-
-/* Range Slider */
+/* ============================================
+   RANGE SLIDER
+   ============================================ */
 input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
@@ -479,66 +371,44 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
 }
 
-/* Form Inputs */
-input, textarea, select {
+/* ============================================
+   FORM INPUTS
+   ============================================ */
+input,
+textarea,
+select {
     border: 1px solid var(--border);
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
     width: 100%;
     transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(26, 79, 139, 0.1);
 }
 
-@media (max-width: 768px) {
-    input, textarea, select {
-        font-size: 16px;
-        padding: 0.875rem 1rem;
-        border-radius: 14px;
-    }
-}
-
-/* Grid Gaps */
+/* ============================================
+   GRID GAPS
+   ============================================ */
 .grid {
     gap: 2rem;
 }
 
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem;
-    }
-}
-
-/* Hero image on mobile */
-@media (max-width: 768px) {
-    .relative img {
-        border-radius: 24px;
-    }
-    
-    .absolute.-bottom-6.-left-6 {
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .relative .grid {
-        gap: 1.5rem;
-    }
-}
-
-/* Animations */
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -549,18 +419,48 @@ input:focus, textarea:focus, select:focus {
     animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Helper Classes */
-.text-center { text-align: center; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-4 { margin-top: 1rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-6 { margin-bottom: 1.5rem; }
-.mb-8 { margin-bottom: 2rem; }
-.mb-10 { margin-bottom: 2.5rem; }
-.mb-12 { margin-bottom: 3rem; }
+/* ============================================
+   HELPER CLASSES
+   ============================================ */
+.text-center {
+    text-align: center;
+}
 
-/* Background Colors */
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.mb-10 {
+    margin-bottom: 2.5rem;
+}
+
+.mb-12 {
+    margin-bottom: 3rem;
+}
+
+/* ============================================
+   BACKGROUND / COLOR UTILITIES
+   ============================================ */
 .bg-primary {
     background-color: var(--primary);
 }
@@ -581,17 +481,526 @@ input:focus, textarea:focus, select:focus {
     color: var(--primary);
 }
 
-/* Container content padding for mobile */
+/* ============================================
+   HERO FLOATING ICON — prevent overflow
+   ============================================ */
+.hero-image-wrapper {
+    position: relative;
+}
+
+.hero-floating-icon {
+    position: absolute;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+/* ============================================
+   TABLET  (769px – 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container-custom {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    section {
+        padding: 4rem 0;
+    }
+
+    /* 2-col grids stay 2-col */
+    .grid.md\:grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 3-col → 2-col on tablet */
+    .grid.md\:grid-cols-3,
+    .grid.lg\:grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* 4-col → 2-col on tablet */
+    .grid.md\:grid-cols-4,
+    .grid.lg\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Specialities grid: 2×2 on tablet */
+    .grid.grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    /* Pricing tables side-by-side on tablet */
+    .grid.md\:grid-cols-3 .pricing-table,
+    .grid.md\:grid-cols-3 .savings-box {
+        min-height: 160px;
+    }
+}
+
+/* ============================================
+   MOBILE  (≤ 768px)
+   ============================================ */
 @media (max-width: 768px) {
-    .container-custom > div:not(.full-width),
-    .container-custom > section > div:first-child {
+
+    /* --- Container --- */
+    .container-custom {
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    
-    /* Full width sections like colored backgrounds */
-    section[style*="background-color"] .container-custom > div {
-        padding-left: 1rem;
-        padding-right: 1rem;
+
+    /* --- Section spacing --- */
+    section {
+        padding: 2.5rem 0;
     }
+
+    /* --- Section headline --- */
+    .section-headline {
+        margin-bottom: 1.75rem;
+    }
+
+    /* --- Stats --- */
+    .stat-number {
+        font-size: 1.875rem;
+    }
+
+    /* --- Cards --- */
+    .card {
+        border-radius: 1rem;
+        padding: 1.25rem;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    /* --- Testimonial cards --- */
+    .testimonial-card {
+        border-radius: 1rem;
+        padding: 1.25rem;
+    }
+
+    .testimonial-card:hover {
+        transform: none;
+    }
+
+    /* --- Buttons: full-width & centered --- */
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1rem;
+        border-radius: 0.625rem;
+        white-space: normal;
+        text-align: center;
+    }
+
+    /* --- Button groups: stack vertically --- */
+    .flex.flex-wrap.gap-4,
+    .flex-wrap.gap-4 {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+
+    /* CTA inline buttons inside blue sections */
+    .flex.flex-wrap.gap-4 a,
+    .flex-wrap.gap-4 a {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* --- ALL grids → single column --- */
+    .grid,
+    .grid.md\:grid-cols-2,
+    .grid.md\:grid-cols-3,
+    .grid.md\:grid-cols-4,
+    .grid.lg\:grid-cols-2,
+    .grid.lg\:grid-cols-3,
+    .grid.lg\:grid-cols-4,
+    .grid.sm\:grid-cols-2,
+    .grid.grid-cols-2 {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    /* --- Trust badges: horizontal scroll --- */
+    .trust-badges {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        gap: 0.625rem;
+        padding-bottom: 0.5rem;
+        margin-top: 1.25rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .trust-badges::-webkit-scrollbar {
+        display: none;
+    }
+
+    .trust-badge {
+        flex-shrink: 0;
+        white-space: nowrap;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        padding: 0.5rem 0.875rem;
+        font-size: 0.75rem;
+    }
+
+    /* --- Feature items: card-style on mobile --- */
+    .feature-item {
+        background: white;
+        padding: 0.875rem 1rem;
+        border-radius: 0.875rem;
+        margin-bottom: 0.625rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    /* --- Tags: horizontal scroll --- */
+    .flex.flex-wrap.justify-center,
+    .flex-wrap.justify-center {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .flex.flex-wrap.justify-center::-webkit-scrollbar,
+    .flex-wrap.justify-center::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tag {
+        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.875rem;
+        background: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    /* --- Pricing tables: horizontal scroll --- */
+    .pricing-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .pricing-table table {
+        min-width: 320px;
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    /* --- Savings box --- */
+    .savings-box {
+        padding: 1.5rem;
+        min-height: 140px;
+    }
+
+    .savings-box .stat-number {
+        font-size: 2rem;
+    }
+
+    /* --- FAQ --- */
+    .faq-question {
+        font-size: 0.9375rem;
+    }
+
+    /* --- Form inputs: prevent iOS zoom --- */
+    input,
+    textarea,
+    select {
+        font-size: 16px;
+        padding: 0.75rem;
+        border-radius: 0.625rem;
+    }
+
+    /* --- Hero floating icon: keep inside bounds --- */
+    .hero-floating-icon {
+        bottom: -1rem;
+        left: -0.75rem;
+        padding: 0.625rem 0.75rem;
+        border-radius: 0.625rem;
+    }
+
+    .hero-floating-icon i {
+        font-size: 1.5rem;
+    }
+
+    /* --- Hero image wrapper: add bottom padding for floating icon --- */
+    .hero-image-wrapper {
+        padding-bottom: 1.5rem;
+    }
+
+    /* --- Rounded images --- */
+    .rounded-2xl {
+        border-radius: 1rem;
+    }
+
+    /* --- Pricing comparison grid: stack all 3 --- */
+    .grid.md\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* --- About page: stats grid 2-col on mobile --- */
+    .grid.grid-cols-1.sm\:grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem;
+    }
+
+    /* --- About team stats: 2-col on mobile --- */
+    .grid.grid-cols-2.md\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem;
+    }
+
+    /* --- Specialities grid: 2-col on mobile --- */
+    .grid.grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem;
+    }
+
+    /* --- Pricing included items: 1-col on mobile --- */
+    .grid.grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* --- Section 4 (blue CTA) inner padding --- */
+    .container-custom .py-16 {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    /* --- Mission quote box padding --- */
+    .p-8.md\:p-12 {
+        padding: 1.5rem !important;
+    }
+
+    /* --- Inline trust badge (testimonials bottom) --- */
+    .inline-flex.items-center.gap-2 {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* ============================================
+   SMALL MOBILE  (≤ 480px)
+   ============================================ */
+@media (max-width: 480px) {
+
+    /* Specialities & team stats: keep 2-col */
+    .grid.grid-cols-2.md\:grid-cols-4,
+    .grid.grid-cols-2.md\:grid-cols-3.lg\:grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.625rem;
+    }
+
+    /* Speciality card icons slightly smaller */
+    .grid.grid-cols-2 .card i.text-5xl {
+        font-size: 2.25rem;
+    }
+
+    /* Stat numbers */
+    .stat-number {
+        font-size: 1.625rem;
+    }
+
+    /* Section padding tighter */
+    section {
+        padding: 2rem 0;
+    }
+
+    /* Hero h1 */
+    h1 {
+        font-size: 1.625rem;
+    }
+
+    h2 {
+        font-size: 1.375rem;
+    }
+}
+
+/* ============================================
+   MOBILE MENU PANEL
+   ============================================ */
+@media (max-width: 768px) {
+    #mobile-menu-panel {
+        max-width: 100vw;
+        overflow-y: auto;
+    }
+
+    #mobile-menu-panel .flex.flex-col.space-y-2 {
+        padding-bottom: 2rem;
+    }
+
+    #mobile-menu-panel a.bg-\[\#1A4F8B\] {
+        display: block;
+        text-align: center;
+        margin: 0 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+    }
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@media print {
+
+    header,
+    footer,
+    #mobile-menu-overlay,
+    #mobile-menu-panel {
+        display: none !important;
+    }
+
+    section {
+        padding: 1.5rem 0;
+        page-break-inside: avoid;
+    }
+
+    .container-custom {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+}
+
+/* ============================================
+   HERO BUTTONS — desktop: inline, mobile: stacked
+   ============================================ */
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   PRICING COMPARISON GRID
+   On mobile: stack all 3 panels vertically
+   ============================================ */
+.pricing-comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .pricing-comparison-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pricing-comparison-grid .savings-box {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-comparison-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .pricing-comparison-grid .savings-box {
+        grid-column: auto;
+    }
+}
+
+/* ============================================
+   PROVIDER CHALLENGES SECTION
+   Checkboxes readable on mobile
+   ============================================ */
+@media (max-width: 768px) {
+    #challengesList label {
+        padding: 0.5rem 0;
+        font-size: 0.9375rem;
+    }
+
+    #challengesList input[type="checkbox"] {
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+    }
+}
+
+/* ============================================
+   NATIONWIDE / SPECIALTY TAGS SECTION
+   Wrap nicely on mobile instead of horizontal scroll
+   ============================================ */
+@media (max-width: 768px) {
+
+    .flex.flex-wrap.justify-center.gap-3,
+    .flex.flex-wrap.justify-center.gap-4 {
+        flex-wrap: wrap !important;
+        overflow-x: visible !important;
+        justify-content: center !important;
+    }
+
+    .flex.flex-wrap.justify-center.gap-3 .tag,
+    .flex.flex-wrap.justify-center.gap-4 .tag {
+        flex-shrink: initial;
+        white-space: normal;
+    }
+}
+
+/* ============================================
+   ABOUT PAGE — mission quote box
+   ============================================ */
+@media (max-width: 768px) {
+    .rounded-2xl.text-center.mb-12 {
+        padding: 1.5rem !important;
+    }
+}
+
+/* ============================================
+   CONTACT PAGE — form & info cards equal height
+   ============================================ */
+@media (max-width: 768px) {
+    .contact-grid .card {
+        height: auto;
+    }
+}
+
+/* ============================================
+   OVERFLOW GUARD — prevent any horizontal scroll
+   ============================================ */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100%;
 }
