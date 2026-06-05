@@ -997,10 +997,15 @@ select:focus {
 }
 
 /* ============================================
-   OVERFLOW GUARD — prevent any horizontal scroll
+   OVERFLOW GUARD — prevent horizontal scroll
+   without breaking position: sticky on header
    ============================================ */
-html,
+html {
+    overflow-x: clip;
+}
+
+/* clip does NOT create a scroll container — sticky safe */
 body {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
 }

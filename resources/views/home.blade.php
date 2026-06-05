@@ -550,109 +550,386 @@
         </div>
     </section>
 
-    <!-- Section 12: Affordable Pricing Comparison -->
+    <!-- Section 12: Pricing Calculator -->
+    <style>
+        /* ── Calculator layout ── */
+        .calc-wrap {
+            background: #fff;
+            border-radius: 1.25rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,.08);
+            overflow: clip;
+        }
+
+        /* Input panel */
+        .calc-input-panel {
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .calc-input-panel h3 {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            color: #1E2A3A;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Number input row */
+        .calc-input-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .calc-dollar {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: #1A4F8B;
+            flex-shrink: 0;
+        }
+        .calc-number-input {
+            flex: 1;
+            font-size: 1.625rem;
+            font-weight: 700;
+            color: #1E2A3A;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.625rem;
+            padding: 0.5rem 0.875rem;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+            min-width: 0;
+        }
+        .calc-number-input:focus { border-color: #1A4F8B; }
+
+        /* Slider */
+        .calc-slider-wrap { margin-bottom: 0.5rem; }
+        .calc-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, #1A4F8B 0%, #1A4F8B var(--pct, 10%), #e2e8f0 var(--pct, 10%), #e2e8f0 100%);
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+        .calc-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: #1A4F8B;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 6px rgba(26,79,139,.4);
+            cursor: pointer;
+        }
+        .calc-slider::-moz-range-thumb {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: #1A4F8B;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 6px rgba(26,79,139,.4);
+            cursor: pointer;
+        }
+        .calc-slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 0.375rem;
+        }
+
+        /* Tier badge */
+        .calc-tier-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f0f4f8;
+            color: #1A4F8B;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            padding: 0.375rem 0.875rem;
+            border-radius: 2rem;
+            margin-top: 0.875rem;
+        }
+
+        /* Results grid */
+        .calc-results {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+        .calc-result-cell {
+            padding: 1.5rem 1.25rem;
+            text-align: center;
+            border-right: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .calc-result-cell:nth-child(4n) { border-right: none; }
+        .calc-result-cell:nth-last-child(-n+4) { border-bottom: none; }
+
+        .calc-result-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .calc-result-value {
+            font-size: 1.375rem;
+            font-weight: 800;
+            color: #1E2A3A;
+            line-height: 1.2;
+        }
+        .calc-result-sub {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
+
+        /* Green savings cells */
+        .calc-result-cell.is-savings .calc-result-value { color: #16a34a; }
+        .calc-result-cell.is-savings .calc-result-label { color: #16a34a; }
+
+        /* Staffing cell */
+        .calc-result-cell.is-staffing .calc-result-value {
+            font-size: 0.9375rem;
+            color: #1A4F8B;
+        }
+
+        /* Marketing message */
+        .calc-message {
+            background: #f8fafc;
+            border-top: 1px solid #f1f5f9;
+            padding: 1.25rem 2rem;
+            font-size: 0.9375rem;
+            color: #64748b;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .calc-cta {
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid #f1f5f9;
+        }
+        .calc-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1A4F8B;
+            color: #fff;
+            padding: 0.875rem 2rem;
+            border-radius: 0.625rem;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .calc-cta a:hover { background: #0E3A6B; transform: translateY(-2px); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .calc-results { grid-template-columns: repeat(2, 1fr); }
+            .calc-result-cell:nth-child(4n)  { border-right: 1px solid #f1f5f9; }
+            .calc-result-cell:nth-child(2n)  { border-right: none; }
+            .calc-result-cell:nth-last-child(-n+4) { border-bottom: 1px solid #f1f5f9; }
+            .calc-result-cell:nth-last-child(-n+2) { border-bottom: none; }
+        }
+        @media (max-width: 600px) {
+            .calc-input-panel { padding: 1.25rem 1rem 1rem; }
+            .calc-number-input { font-size: 1.25rem; }
+            .calc-results { grid-template-columns: repeat(2, 1fr); }
+            .calc-result-cell { padding: 1.125rem 0.75rem; }
+            .calc-result-value { font-size: 1.125rem; }
+            .calc-message { padding: 1rem; font-size: 0.875rem; }
+            .calc-cta { padding: 1.125rem 1rem; }
+            .calc-cta a { width: 100%; justify-content: center; }
+        }
+    </style>
+
     <section data-aos="fade-up">
         <div class="container-custom mx-auto">
+
             <div class="section-headline">
-                <h2>{{ pageContent('home', 'pricing_comparison', 'title') }}</h2>
+                <h2>{{ pageContent('home', 'pricing_comparison', 'title', 'See How Much Your Practice Can Save') }}</h2>
                 <div class="underline"></div>
-            </div>
-            <div class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-                {!! pageContent('home', 'pricing_comparison', 'content') !!}
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Enter your monthly collections and see your real savings with DBillers vs. an in-house billing team.
+                </p>
             </div>
 
-            <!-- Perks List -->
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div data-aos="fade-right">
-                    <h3 class="font-bold text-lg mb-4">What's Included:</h3>
-                    <div class="grid grid-cols-2 gap-2">
-                        @php $included = pageContent('home', 'pricing_comparison', 'metadata.included', []); @endphp
-                        @foreach ($included as $item)
-                            <div><i class="fas fa-check text-primary mr-2"></i> {{ $item }}</div>
-                        @endforeach
+            <div class="calc-wrap max-w-4xl mx-auto">
+
+                <!-- Input panel -->
+                <div class="calc-input-panel">
+                    <h3>Enter Your Monthly Collections</h3>
+
+                    <div class="calc-input-row">
+                        <span class="calc-dollar">$</span>
+                        <input type="number"
+                               id="calcInput"
+                               class="calc-number-input"
+                               value="25000"
+                               min="1000"
+                               max="1000000"
+                               step="500"
+                               inputmode="numeric"
+                               placeholder="e.g. 25000">
+                    </div>
+
+                    <div class="calc-slider-wrap">
+                        <input type="range"
+                               id="calcSlider"
+                               class="calc-slider"
+                               min="1000"
+                               max="600000"
+                               step="500"
+                               value="25000">
+                        <div class="calc-slider-labels">
+                            <span>$1,000</span>
+                            <span>$100K</span>
+                            <span>$300K</span>
+                            <span>$600K+</span>
+                        </div>
+                    </div>
+
+                    <div class="calc-tier-badge" id="calcTierBadge">
+                        <i class="fas fa-layer-group"></i>
+                        <span id="calcTierText">Loading...</span>
                     </div>
                 </div>
-                <div data-aos="fade-left">
-                    <h3 class="font-bold text-lg mb-4">Interactive Pricing Calculator</h3>
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium mb-2">Monthly Collections: <span id="collectionsValue" class="font-bold text-primary">$100,000</span></label>
-                        <input type="range" id="collectionsSlider" min="50000" max="10000000" step="50000" value="100000" class="w-full">
+
+                <!-- Results -->
+                <div class="calc-results">
+                    <div class="calc-result-cell">
+                        <div class="calc-result-label">DBillers Fee</div>
+                        <div class="calc-result-value" id="calcDbillersFee">—</div>
+                        <div class="calc-result-sub" id="calcDbillersRate">per month</div>
+                    </div>
+                    <div class="calc-result-cell">
+                        <div class="calc-result-label">In-House Cost</div>
+                        <div class="calc-result-value" id="calcInhouse">—</div>
+                        <div class="calc-result-sub" id="calcInhouseStaff">per month</div>
+                    </div>
+                    <div class="calc-result-cell is-savings">
+                        <div class="calc-result-label">Monthly Savings</div>
+                        <div class="calc-result-value" id="calcMonthlySavings">—</div>
+                        <div class="calc-result-sub" id="calcSavingsPct">vs. in-house</div>
+                    </div>
+                    <div class="calc-result-cell is-savings">
+                        <div class="calc-result-label">Annual Savings</div>
+                        <div class="calc-result-value" id="calcAnnualSavings">—</div>
+                        <div class="calc-result-sub">per year</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Comparison Table -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8 pricing-comparison-grid">
-                <div class="pricing-table" data-aos="flip-left" data-aos-delay="0">
-                    <table class="w-full">
-                        <tr>
-                            <th colspan="2">In-House Billing Costs</th>
-                        </tr>
-                        <tr>
-                            <td>Annual Salary</td>
-                            <td class="text-right">$54,480</td>
-                        </tr>
-                        <tr>
-                            <td>Overheads</td>
-                            <td class="text-right">$15,000</td>
-                        </tr>
-                        <tr class="font-bold">
-                            <td>Total</td>
-                            <td class="text-right">$69,480</td>
-                        </tr>
-                    </table>
+                <!-- Marketing message -->
+                <div class="calc-message">
+                    "Why pay for a full in-house billing team when you can achieve the same results at a fraction of the cost?
+                    Compare your expenses and discover how much your practice can save with DBillers."
                 </div>
-                <div class="pricing-table" data-aos="flip-left" data-aos-delay="100">
-                    <table class="w-full">
-                        <tr>
-                            <th colspan="2">DBillers Full Service</th>
-                        </tr>
-                        <tr>
-                            <td>Billing Service Rates</td>
-                            <td class="text-right">as low as 2.99%</td>
-                        </tr>
-                        <tr class="font-bold">
-                            <td>Total</td>
-                            <td class="text-right" id="dbillersTotal">$35,998</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="savings-box" data-aos="flip-left" data-aos-delay="200">
-                    <i class="fas fa-dollar-sign text-3xl mb-2"></i>
-                    <div class="text-3xl font-bold" id="savingsAmount">$33,482</div>
-                    <p>Annual Savings with DBillers</p>
-                </div>
-            </div>
 
-            <div class="text-center">
-                <a href="{{ pageContent('home', 'pricing_comparison', 'metadata.button_link') }}" class="btn-primary">
-                    {{ pageContent('home', 'pricing_comparison', 'metadata.button_text') }} <i class="fas fa-arrow-right"></i>
-                </a>
+                <!-- CTA -->
+                <div class="calc-cta">
+                    <a href="/contact">
+                        Schedule a Free Billing Consultation <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
             </div>
         </div>
     </section>
 
     <script>
-        const slider = document.getElementById('collectionsSlider');
-        const collectionsValue = document.getElementById('collectionsValue');
-        const dbillersTotal = document.getElementById('dbillersTotal');
-        const savingsAmount = document.getElementById('savingsAmount');
+    (function () {
+        // ── Pricing tiers ──────────────────────────────────────────────
+        // Each tier: { max, rate (null = flat), flat, inhouse, staff }
+        // max: upper bound of monthly collections (Infinity for last tier)
+        const TIERS = [
+            { max:   3000, rate: 0.10, flat: null, inhouse:  3000, staff: '1 Biller' },
+            { max:   7500, rate: 0.08, flat: null, inhouse:  3000, staff: '1 Biller' },
+            { max:  10000, rate: null, flat:  600,  inhouse:  3000, staff: '1 Biller' },
+            { max:  20000, rate: 0.06, flat: null, inhouse:  3000, staff: '1 Biller' },
+            { max:  50000, rate: 0.05, flat: null, inhouse:  6000, staff: '2 Billers' },
+            { max: 100000, rate: 0.04, flat: null, inhouse:  9000, staff: '2 Billers + 1 Coder' },
+            { max: 500000, rate: 0.0299, flat: null, inhouse: 12000, staff: '3 Billers + 1 Coder' },
+            { max: Infinity, rate: 0.0249, flat: null, inhouse: 20000, staff: '4 Billers + 2 Coders' },
+        ];
 
-        if (slider) {
-            slider.addEventListener('input', function() {
-                let value = parseInt(this.value);
-                let formattedValue = '$' + value.toLocaleString();
-                collectionsValue.textContent = formattedValue;
-
-                let annualCollections = value * 12;
-                let inHouseTotal = 69480;
-                let dbillersCost = annualCollections * 0.0299;
-                let savings = inHouseTotal - dbillersCost;
-
-                dbillersTotal.textContent = '$' + Math.round(dbillersCost).toLocaleString();
-                savingsAmount.textContent = '$' + Math.round(savings).toLocaleString();
-            });
+        function getTier(monthly) {
+            return TIERS.find(t => monthly <= t.max);
         }
+
+        function calcFee(monthly, tier) {
+            if (tier.flat !== null) return tier.flat;
+            return monthly * tier.rate;
+        }
+
+        function fmt(n) {
+            return '$' + Math.round(n).toLocaleString('en-US');
+        }
+
+        function fmtRate(tier) {
+            if (tier.flat !== null) return 'Flat $' + tier.flat.toLocaleString() + '/mo';
+            return (tier.rate * 100).toFixed(tier.rate < 0.05 ? 2 : 0) + '% of collections';
+        }
+
+        function update(monthly) {
+            monthly = Math.max(1000, parseInt(monthly) || 1000);
+            const tier        = getTier(monthly);
+            const dbillersFee = calcFee(monthly, tier);
+            const inhouse     = tier.inhouse;
+            const monthlySave = inhouse - dbillersFee;
+            const annualSave  = monthlySave * 12;
+            const savingsPct  = ((monthlySave / inhouse) * 100).toFixed(0);
+
+            document.getElementById('calcDbillersFee').textContent    = fmt(dbillersFee);
+            document.getElementById('calcDbillersRate').textContent    = fmtRate(tier);
+            document.getElementById('calcInhouse').textContent         = fmt(inhouse);
+            document.getElementById('calcInhouseStaff').textContent    = tier.staff;
+            document.getElementById('calcMonthlySavings').textContent  = fmt(monthlySave);
+            document.getElementById('calcSavingsPct').textContent      = savingsPct + '% savings';
+            document.getElementById('calcAnnualSavings').textContent   = fmt(annualSave);
+            document.getElementById('calcTierText').textContent        =
+                'Tier: ' + fmtRate(tier) + '  ·  Staffing: ' + tier.staff;
+
+            // Colour savings red if negative (edge case: very low collections)
+            const savingsCells = document.querySelectorAll('.is-savings .calc-result-value');
+            savingsCells.forEach(el => {
+                el.style.color = monthlySave >= 0 ? '#16a34a' : '#dc2626';
+            });
+
+            // Update slider gradient fill
+            const slider = document.getElementById('calcSlider');
+            const pct = ((monthly - slider.min) / (slider.max - slider.min) * 100).toFixed(1);
+            slider.style.setProperty('--pct', pct + '%');
+        }
+
+        // ── Wire up inputs ─────────────────────────────────────────────
+        const input  = document.getElementById('calcInput');
+        const slider = document.getElementById('calcSlider');
+
+        // Sync slider → input
+        slider.addEventListener('input', function () {
+            input.value = this.value;
+            update(this.value);
+        });
+
+        // Sync input → slider (clamp to slider range)
+        input.addEventListener('input', function () {
+            const v = parseInt(this.value) || 1000;
+            slider.value = Math.min(Math.max(v, slider.min), slider.max);
+            update(v);
+        });
+
+        // Initial render
+        update(25000);
+        slider.value = 25000;
+        const initPct = ((25000 - slider.min) / (slider.max - slider.min) * 100).toFixed(1);
+        slider.style.setProperty('--pct', initPct + '%');
+    })();
     </script>
 
     <!-- Section 13: Testimonials -->
