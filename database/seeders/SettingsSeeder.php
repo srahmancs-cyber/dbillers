@@ -22,8 +22,8 @@ class SettingsSeeder extends Seeder
             ['key' => 'site_keywords',   'value' => 'medical billing, revenue cycle management, medical coding, healthcare billing, claim processing, RCM services'],
             ['key' => 'og_image',        'value' => ''],
             ['key' => 'logo',            'value' => 'logos/01KRHSJ6CFBTN1TG0Q1SH78J41.png'],
-            ['key' => 'gtm_id',          'value' => ''],
-            ['key' => 'gtm_enabled',     'value' => '0'],
+            ['key' => 'gtm_id',          'value' => 'GTM-TT98SWQM'],
+            ['key' => 'gtm_enabled',     'value' => '1'],
         ];
 
         foreach ($settings as $setting) {
