@@ -135,7 +135,6 @@ class ManageSettings extends Page implements HasForms
 
                                         Forms\Components\TextInput::make('company_phone')
                                             ->label('Phone Number')
-                                            ->tel()
                                             ->maxLength(50),
 
                                         Forms\Components\Textarea::make('company_address')
