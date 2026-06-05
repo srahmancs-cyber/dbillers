@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{-- GTM: resolve settings as early as possible --}}
+    @php
+        $gtmId      = setting('gtm_id', '');
+        $gtmEnabled = setting('gtm_enabled', '0');
+        $loadGtm    = $gtmEnabled === '1' && !empty($gtmId);
+    @endphp
+
+    @if($loadGtm)
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ $gtmId }}');</script>
+    <!-- End Google Tag Manager -->
+    @endif
     
     <!-- Dynamic Meta Tags -->
     <title>@yield('meta_title', setting('site_title', 'DBillers - Smart Medical Billing for US Healthcare Providers'))</title>
@@ -108,23 +125,6 @@
         ]
     }
     </script>
-
-    {{-- GTM: only load if enabled and ID is set --}}
-    @php
-        $gtmId      = setting('gtm_id', '');
-        $gtmEnabled = setting('gtm_enabled', '0');
-        $loadGtm    = $gtmEnabled === '1' && !empty($gtmId);
-    @endphp
-
-    @if($loadGtm)
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','{{ $gtmId }}');</script>
-    <!-- End Google Tag Manager -->
-    @endif
 
     @yield('schema')
 </head>
