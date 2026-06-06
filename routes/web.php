@@ -12,6 +12,7 @@ Route::get('/specialities', [PageController::class, 'specialities'])->name('spec
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 Route::get('/revenue-cycle-management', [PageController::class, 'rcm'])->name('rcm');
+Route::get('/medical-billing-consulting', [PageController::class, 'medicalBillingConsulting'])->name('medical-billing-consulting');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy.policy');
 Route::get('/terms-of-service', [PageController::class, 'terms'])->name('terms.service');
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);

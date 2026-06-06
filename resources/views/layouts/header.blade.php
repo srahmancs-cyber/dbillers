@@ -401,7 +401,7 @@
 
                         <!-- 2-col grid -->
                         <div class="nav-dd-grid">
-                            <a href="/services" class="nav-dd-item"><i class="fas fa-headset"></i> Medical Billing</a>
+                            <a href="/medical-billing-consulting" class="nav-dd-item"><i class="fas fa-headset"></i> Medical Billing</a>
                             <a href="/services" class="nav-dd-item"><i class="fas fa-code"></i> Medical Coding</a>
                             <a href="/services" class="nav-dd-item"><i class="fas fa-id-card"></i> Provider Credentialing</a>
                             <a href="/services" class="nav-dd-item"><i class="fas fa-file-invoice"></i> Claims Processing</a>
@@ -480,7 +480,7 @@
                 <a href="/revenue-cycle-management" class="mob-sub-item is-featured mob-link {{ $currentPath === '/revenue-cycle-management' ? 'active' : '' }}">
                     <i class="fas fa-chart-line"></i> Revenue Cycle Management
                 </a>
-                <a href="/services" class="mob-sub-item mob-link {{ $currentPath === '/services' ? 'active' : '' }}">
+                <a href="/medical-billing-consulting" class="mob-sub-item mob-link">
                     <i class="fas fa-headset"></i> Medical Billing
                 </a>
                 <a href="/services" class="mob-sub-item mob-link">

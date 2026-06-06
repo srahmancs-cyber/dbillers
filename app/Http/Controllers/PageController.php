@@ -51,4 +51,10 @@ class PageController extends Controller
         $content = PageContent::where('page', 'rcm')->where('is_active', true)->orderBy('order')->get();
         return view('rcm', compact('content'));
     }
+
+    public function medicalBillingConsulting()
+    {
+        $content = PageContent::where('page', 'mbc')->where('is_active', true)->orderBy('order')->get();
+        return view('medical-billing-consulting', compact('content'));
+    }
 }
