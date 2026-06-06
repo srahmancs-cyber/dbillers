@@ -45,4 +45,10 @@ class PageController extends Controller
     {
         return view('terms');
     }
+
+    public function rcm()
+    {
+        $content = PageContent::where('page', 'rcm')->where('is_active', true)->orderBy('order')->get();
+        return view('rcm', compact('content'));
+    }
 }

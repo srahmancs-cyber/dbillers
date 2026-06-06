@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             SpecialitySeeder::class,    // specialities table
             PageContentSeeder::class,   // home, about, services, specialities, contact
             LegalPagesSeeder::class,    // privacy, terms
+            RcmPageSeeder::class,       // /revenue-cycle-management page
         ]);
     }
 }

@@ -11,6 +11,7 @@ Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/specialities', [PageController::class, 'specialities'])->name('specialities');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::get('/revenue-cycle-management', [PageController::class, 'rcm'])->name('rcm');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy.policy');
 Route::get('/terms-of-service', [PageController::class, 'terms'])->name('terms.service');
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);

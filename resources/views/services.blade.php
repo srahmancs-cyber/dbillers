@@ -34,15 +34,31 @@
                 </div>
             </div>
 
+            {{-- All services in one grid — RCM gets a subtle premium style --}}
             <div class="grid md:grid-cols-2 gap-8">
                 @php $servicesList = pageContent('services', 'core_services', 'metadata.services', []); @endphp
                 @foreach ($servicesList as $service)
-                    <div class="card" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
-                        <i class="fas {{ $service['icon'] }} text-4xl text-primary mb-4"></i>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $service['title'] }}</h3>
-                        <p class="text-gray-600 mb-3">{{ $service['description'] }}</p>
-                        <a href="{{ $service['link'] }}" class="text-primary font-semibold hover:underline">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    @php $isRcm = ($service['link'] ?? '') === '/revenue-cycle-management'; @endphp
+
+                    @if($isRcm)
+                        {{-- RCM card: same structure, slight premium touch --}}
+                        <div class="card" style="border-left: 3px solid #1A4F8B;" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
+                            <div class="flex items-start justify-between mb-4">
+                                <i class="fas {{ $service['icon'] }} text-4xl text-primary"></i>
+                                <span style="font-size:.6875rem;font-weight:700;color:#1A4F8B;background:#dbeafe;padding:.2rem .6rem;border-radius:2rem;white-space:nowrap;">Featured</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $service['title'] }}</h3>
+                            <p class="text-gray-600 mb-3">{{ $service['description'] }}</p>
+                            <a href="{{ $service['link'] }}" class="text-primary font-semibold hover:underline">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    @else
+                        <div class="card" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
+                            <i class="fas {{ $service['icon'] }} text-4xl text-primary mb-4"></i>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $service['title'] }}</h3>
+                            <p class="text-gray-600 mb-3">{{ $service['description'] }}</p>
+                            <a href="{{ $service['link'] }}" class="text-primary font-semibold hover:underline">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>

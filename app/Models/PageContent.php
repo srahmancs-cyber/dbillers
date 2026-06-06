@@ -10,7 +10,8 @@ class PageContent extends Model
     use HasFactory;
 
     protected $fillable = [
-        'page', 'section', 'title', 'subtitle', 'content', 'image_url', 'order', 'is_active'
+        'page', 'section', 'title', 'subtitle', 'content',
+        'image_url', 'metadata', 'order', 'is_active',
     ];
 
     protected $casts = [

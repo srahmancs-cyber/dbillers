@@ -784,14 +784,14 @@
                                id="calcSlider"
                                class="calc-slider"
                                min="1000"
-                               max="600000"
+                               max="1200000"
                                step="500"
                                value="25000">
                         <div class="calc-slider-labels">
                             <span>$1,000</span>
                             <span>$100K</span>
-                            <span>$300K</span>
-                            <span>$600K+</span>
+                            <span>$500K</span>
+                            <span>$1M+</span>
                         </div>
                     </div>
 
@@ -848,14 +848,16 @@
         // Each tier: { max, rate (null = flat), flat, inhouse, staff }
         // max: upper bound of monthly collections (Infinity for last tier)
         const TIERS = [
-            { max:   3000, rate: 0.10, flat: null, inhouse:  3000, staff: '1 Biller' },
-            { max:   7500, rate: 0.08, flat: null, inhouse:  3000, staff: '1 Biller' },
-            { max:  10000, rate: null, flat:  600,  inhouse:  3000, staff: '1 Biller' },
-            { max:  20000, rate: 0.06, flat: null, inhouse:  3000, staff: '1 Biller' },
-            { max:  50000, rate: 0.05, flat: null, inhouse:  6000, staff: '2 Billers' },
-            { max: 100000, rate: 0.04, flat: null, inhouse:  9000, staff: '2 Billers + 1 Coder' },
-            { max: 500000, rate: 0.0299, flat: null, inhouse: 12000, staff: '3 Billers + 1 Coder' },
-            { max: Infinity, rate: 0.0249, flat: null, inhouse: 20000, staff: '4 Billers + 2 Coders' },
+            { max:    3000, rate: 0.10,   flat: null, inhouse:  3500, staff: '1 Biller' },
+            { max:    7500, rate: 0.08,   flat: null, inhouse:  3500, staff: '1 Biller' },
+            { max:   10000, rate: null,   flat:  600, inhouse:  3500, staff: '1 Biller' },
+            { max:   20000, rate: 0.06,   flat: null, inhouse:  3500, staff: '1 Biller' },
+            { max:   50000, rate: 0.05,   flat: null, inhouse:  7000, staff: '2 Billers' },
+            { max:  100000, rate: 0.04,   flat: null, inhouse: 10500, staff: '2 Billers + 1 Coder' },
+            { max:  300000, rate: 0.0299, flat: null, inhouse: 14000, staff: '3 Billers + 1 Coder' },
+            { max:  500000, rate: 0.0299, flat: null, inhouse: 21000, staff: '4 Billers + 2 Coders' },
+            { max: 1000000, rate: 0.02,   flat: null, inhouse: 24500, staff: '5 Billers + 2 Coders' },
+            { max: Infinity, rate: 0.0175, flat: null, inhouse: 35000, staff: '7 Billers + 3 Coders' },
         ];
 
         function getTier(monthly) {
