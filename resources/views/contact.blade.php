@@ -34,7 +34,7 @@
             <!-- Contact Form -->
             <div class="card" data-aos="fade-right">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
-                <form method="POST" action="{{ route('contact.submit') }}">
+                <form id="contact-form" method="POST" action="{{ route('contact.submit') }}">
                     @csrf
                     <div class="mb-4">
                         <label class="block text-gray-700 font-semibold mb-2">Full Name <span class="text-primary">*</span></label>
