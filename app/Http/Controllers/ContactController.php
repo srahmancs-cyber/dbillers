@@ -43,7 +43,7 @@ class ContactController extends Controller
         // Send auto-reply to user
         Mail::to($lead->email)->send(new ContactAutoReply($lead));
 
-        // Redirect back to home with success message
-        return redirect()->back()->with('success', 'Thank you for contacting us. We will get back to you within 24 hours.');
+        // Redirect to dedicated thank you page
+        return redirect()->route('thank-you');
     }
 }
