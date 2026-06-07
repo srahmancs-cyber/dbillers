@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactLead;
+use App\Models\LeadReply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewContactLead;
@@ -27,11 +28,19 @@ class ContactController extends Controller
         }
 
         $lead = ContactLead::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'phone' => $validated['phone'],
+            'name'    => $validated['name'],
+            'email'   => $validated['email'],
+            'phone'   => $validated['phone'],
             'message' => $finalMessage,
-            'status' => 'unread',
+            'status'  => 'new',
+        ]);
+
+        // Log the auto-reply that will be sent as a thread entry
+        LeadReply::create([
+            'contact_lead_id' => $lead->id,
+            'user_id'         => null,
+            'type'            => 'reply',
+            'body'            => "Hi {$lead->name},\n\nThank you for reaching out to DBillers. We've received your free practice audit request and a billing specialist is already reviewing your information.\n\nYou'll hear from us within 24 hours. We'll reach out to schedule your free 30-minute audit call.\n\n— DBillers Support Team",
         ]);
 
         // Send email to admin (from settings)

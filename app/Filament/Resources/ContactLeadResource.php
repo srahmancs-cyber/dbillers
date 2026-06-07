@@ -15,6 +15,7 @@ class ContactLeadResource extends Resource
     protected static ?string $model = ContactLead::class;
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
     protected static ?string $navigationGroup = 'Leads';
+    protected static bool $shouldRegisterNavigation = false; // replaced by LeadInbox
 
     public static function form(Form $form): Form
     {
