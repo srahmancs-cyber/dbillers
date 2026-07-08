@@ -84,8 +84,8 @@
         <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
             <p>&copy; {{ date('Y') }} {{ setting('company_name') ?? 'DBillers' }}. All rights reserved.</p>
             <div class="flex justify-center gap-4 mt-2 flex-wrap">
-                <a href="/privacy-policy" class="text-gray-500 hover:text-gray-300 transition">Privacy Policy</a>
-                <a href="/terms-of-service" class="text-gray-500 hover:text-gray-300 transition">Terms of Service</a>
+                <a href="/privacy-policy" rel="nofollow" class="text-gray-500 hover:text-gray-300 transition">Privacy Policy</a>
+                <a href="/terms-of-service" rel="nofollow" class="text-gray-500 hover:text-gray-300 transition">Terms of Service</a>
             </div>
         </div>
     </div>

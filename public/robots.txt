@@ -8,6 +8,10 @@ Disallow: /login
 Disallow: /logout
 Disallow: /register
 
+# Disallow legal pages from appearing as sitelinks
+Disallow: /privacy-policy
+Disallow: /terms-of-service
+
 # Disallow Laravel specific paths
 Disallow: /_debugbar
 Disallow: /horizon

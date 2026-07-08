@@ -6,6 +6,10 @@
 @section('og_title', pageContent('privacy', 'hero', 'metadata.og_title', 'Privacy Policy - DBillers'))
 @section('og_description', pageContent('privacy', 'hero', 'metadata.og_description', 'DBillers privacy policy'))
 @section('og_url', url()->current())
+
+@section('schema')
+<meta name="robots" content="noindex, follow">
+@endsection
 @section('canonical', url()->current())
 
 @section('content')
