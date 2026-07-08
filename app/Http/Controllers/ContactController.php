@@ -14,11 +14,12 @@ class ContactController extends Controller
     public function submit(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:20',
-            'message' => 'required|string',
-            'selected_challenges' => 'nullable|string',
+            'name'               => 'required|string|max:255',
+            'email'              => 'required|email|max:255',
+            'phone'              => 'nullable|string|max:20',
+            'message'            => 'required|string',
+            'selected_challenges'=> 'nullable|string',
+            'sms_consent'        => 'nullable|in:0,1',
         ]);
 
         // Append challenges to message if present
@@ -26,6 +27,10 @@ class ContactController extends Controller
         if (!empty($validated['selected_challenges'])) {
             $finalMessage .= "\n\n--- Selected Challenges ---\n" . str_replace(', ', "\n• ", $validated['selected_challenges']);
         }
+
+        // Append SMS consent record
+        $smsConsent = ($validated['sms_consent'] ?? '0') === '1';
+        $finalMessage .= "\n\nSMS Consent: " . ($smsConsent ? 'Yes — consented at ' . now()->format('M j, Y g:i A T') : 'No');
 
         $lead = ContactLead::create([
             'name'    => $validated['name'],

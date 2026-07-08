@@ -393,10 +393,11 @@
                     <form id="contact-form" method="POST" action="{{ route('contact.submit') }}">
                         @csrf
                         {{-- Hidden fields that aggregate all steps --}}
-                        <input type="hidden" name="name"    id="hidName">
-                        <input type="hidden" name="email"   id="hidEmail">
-                        <input type="hidden" name="phone"   id="hidPhone">
-                        <input type="hidden" name="message" id="hidMessage">
+                        <input type="hidden" name="name"        id="hidName">
+                        <input type="hidden" name="email"       id="hidEmail">
+                        <input type="hidden" name="phone"       id="hidPhone">
+                        <input type="hidden" name="message"     id="hidMessage">
+                        <input type="hidden" name="sms_consent" id="hidSmsConsent" value="0">
 
                         {{-- ── STEP 1: Practice Info ── --}}
                         <div class="ct-step-section is-active" id="step1">
@@ -531,6 +532,24 @@
                                     <option>Afternoon (12 PM – 3 PM EST)</option>
                                     <option>Late Afternoon (3 PM – 6 PM EST)</option>
                                 </select>
+                            </div>
+
+                            {{-- SMS Consent --}}
+                            <div class="mb-5" style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.625rem;padding:1rem;">
+                                <label style="display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;">
+                                    <div style="flex-shrink:0;margin-top:.125rem;">
+                                        <input type="checkbox" id="s3SmsConsent" required
+                                               style="width:1rem;height:1rem;accent-color:#1A4F8B;cursor:pointer;">
+                                    </div>
+                                    <span style="font-size:.8125rem;color:#4A5568;line-height:1.6;">
+                                        By checking this box, I consent to receive text messages related to customer care from DBillers.
+                                        Reply <strong>STOP</strong> to opt-out; Reply <strong>HELP</strong> for support.
+                                        Message &amp; data rates may apply. Message frequency may vary.
+                                        View our <a href="/privacy-policy" target="_blank" style="color:#1A4F8B;text-decoration:underline;">Privacy Policy</a>
+                                        and <a href="/terms-of-service" target="_blank" style="color:#1A4F8B;text-decoration:underline;">Terms of Service</a>
+                                        for more information. <span style="color:#1A4F8B;font-weight:600;">*</span>
+                                    </span>
+                                </label>
                             </div>
 
                             <button type="submit" class="ct-btn-next" id="ctSubmitBtn" onclick="ctBuildMessage()">
@@ -701,8 +720,9 @@
             challenges.push(cb.value);
         });
 
-        var notes    = document.getElementById('s2Notes').value;
-        var callTime = document.getElementById('s3CallTime').value;
+        var notes       = document.getElementById('s2Notes').value;
+        var callTime    = document.getElementById('s3CallTime').value;
+        var smsConsent  = document.getElementById('s3SmsConsent').checked;
 
         // Build message
         var msg = '';
@@ -712,13 +732,15 @@
         if (setup)        msg += 'Current Billing Setup: ' + setup + '\n';
         if (challenges.length) msg += 'Challenges: ' + challenges.join(', ') + '\n';
         if (callTime)    msg += 'Best Time to Call: ' + callTime + '\n';
+        msg += 'SMS Consent: ' + (smsConsent ? 'Yes — consented to receive SMS' : 'No') + '\n';
         if (notes)       msg += 'Additional Notes: ' + notes;
 
         // Push to hidden fields
-        document.getElementById('hidName').value    = document.getElementById('s3Name').value;
-        document.getElementById('hidEmail').value   = document.getElementById('s3Email').value;
-        document.getElementById('hidPhone').value   = document.getElementById('s3Phone').value;
-        document.getElementById('hidMessage').value = msg.trim();
+        document.getElementById('hidName').value       = document.getElementById('s3Name').value;
+        document.getElementById('hidEmail').value      = document.getElementById('s3Email').value;
+        document.getElementById('hidPhone').value      = document.getElementById('s3Phone').value;
+        document.getElementById('hidMessage').value    = msg.trim();
+        document.getElementById('hidSmsConsent').value = smsConsent ? '1' : '0';
     };
 })();
 </script>
