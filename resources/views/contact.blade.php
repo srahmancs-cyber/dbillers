@@ -538,7 +538,7 @@
                             <div class="mb-5" style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:.625rem;padding:1rem;">
                                 <label style="display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;">
                                     <div style="flex-shrink:0;margin-top:.125rem;">
-                                        <input type="checkbox" id="s3SmsConsent" required
+                                        <input type="checkbox" id="s3SmsConsent"
                                                style="width:1rem;height:1rem;accent-color:#1A4F8B;cursor:pointer;">
                                     </div>
                                     <span style="font-size:.8125rem;color:#4A5568;line-height:1.6;">
@@ -547,7 +547,7 @@
                                         Message &amp; data rates may apply. Message frequency may vary.
                                         View our <a href="/privacy-policy" target="_blank" style="color:#1A4F8B;text-decoration:underline;">Privacy Policy</a>
                                         and <a href="/terms-of-service" target="_blank" style="color:#1A4F8B;text-decoration:underline;">Terms of Service</a>
-                                        for more information. <span style="color:#1A4F8B;font-weight:600;">*</span>
+                                        for more information.
                                     </span>
                                 </label>
                             </div>
