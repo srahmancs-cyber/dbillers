@@ -179,10 +179,10 @@ class MbcPageSeeder extends Seeder
                 'image_url'=> null,
                 'metadata' => json_encode([
                     'stats' => [
-                        ['value' => '97.35%', 'label' => 'Claim Approval'],
-                        ['value' => '98.17%', 'label' => 'Fast Reimbursements'],
-                        ['value' => '98.44%', 'label' => 'Payer-Provider-Patient Satisfaction'],
-                        ['value' => '98.89%', 'label' => 'Overall Score'],
+                        ['value' => '~97%', 'label' => 'Claim Approval'],
+                        ['value' => '~98%', 'label' => 'Fast Reimbursements'],
+                        ['value' => '~98%', 'label' => 'Client Satisfaction'],
+                        ['value' => '~98%', 'label' => 'Overall Score'],
                     ],
                 ]),
                 'order' => 6,
@@ -273,7 +273,7 @@ class MbcPageSeeder extends Seeder
             ],
             [
                 'section'  => 'final_cta',
-                'title'    => 'Reduce Billing Claim Denials and Boost Your Medical Revenue Up to 30%',
+                'title'    => 'Reduce Billing Claim Denials and Boost Your Medical Revenue',
                 'subtitle' => null,
                 'content'  => "<p>Claim denials are a major source of lost revenue for healthcare providers. DBillers' medical billing consulting service prevents these errors by ensuring claim submission that's compliant with payer rules and regulations.</p>",
                 'image_url'=> null,
