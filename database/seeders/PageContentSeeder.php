@@ -77,7 +77,7 @@ class PageContentSeeder extends Seeder
             [
                 'page'      => 'home',
                 'section'   => 'pricing_offer',
-                'title'     => 'Premium Service — Guaranteed — Low Price',
+                'title'     => 'Premium Services - Guaranteed Low Rates',
                 'subtitle'  => null,
                 'content'   => 'Over 150 medical practices trust DBillers. Let\'s have a chat.',
                 'image_url' => null,
