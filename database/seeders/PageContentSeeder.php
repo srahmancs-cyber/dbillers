@@ -77,7 +77,7 @@ class PageContentSeeder extends Seeder
             [
                 'page'      => 'home',
                 'section'   => 'pricing_offer',
-                'title'     => 'Experience Our Medical Billing Services for as Low as 2.49%',
+                'title'     => 'Premium Service — Guaranteed — Low Price',
                 'subtitle'  => null,
                 'content'   => 'Over 150 medical practices trust DBillers. Let\'s have a chat.',
                 'image_url' => null,
