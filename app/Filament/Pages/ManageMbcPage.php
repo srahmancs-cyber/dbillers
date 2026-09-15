@@ -16,7 +16,7 @@ class ManageMbcPage extends Page implements HasForms
     use InteractsWithForms;
 
     protected static ?string $navigationIcon  = 'heroicon-o-phone';
-    protected static ?string $navigationLabel = 'Medical Billing Consulting';
+    protected static ?string $navigationLabel = 'MBC Page';
     protected static ?string $navigationGroup = 'Page Content';
     protected static ?int    $navigationSort  = 8;
     protected static string  $view            = 'filament.pages.manage-mbc-page';

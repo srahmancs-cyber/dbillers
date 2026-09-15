@@ -16,6 +16,7 @@ class PageContentResource extends Resource
     protected static ?string $model = PageContent::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Website Content';
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Form $form): Form
     {
