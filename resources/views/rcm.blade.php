@@ -719,7 +719,7 @@
             @foreach($features as $i => $feature)
                 <div class="rcm-feature-card" data-aos="zoom-in" data-aos-delay="{{ ($i % 3) * 100 }}">
                     <div class="rcm-feature-icon">
-                        <i class="fas {{ $feature['icon'] }}"></i>
+                        <i class="fas {{ $feature['icon'] ?? 'fa-check' }}"></i>
                     </div>
                     <h3>{{ $feature['title'] }}</h3>
                     <ul>
@@ -815,7 +815,7 @@
                 <div class="rcm-reporting-card" data-aos="fade-up" data-aos-delay="{{ ($i % 3) * 100 }}">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="rcm-feature-icon" style="margin:0;flex-shrink:0;">
-                            <i class="fas {{ $r['icon'] }}"></i>
+                            <i class="fas {{ $r['icon'] ?? 'fa-check' }}"></i>
                         </div>
                         <h3 style="margin:0;">{{ $r['title'] }}</h3>
                     </div>

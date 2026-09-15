@@ -76,7 +76,7 @@
                 @php $values = pageContent('about', 'mission', 'metadata.values', []); @endphp
                 @foreach ($values as $value)
                     <div class="card text-center" data-aos="zoom-in-up" data-aos-delay="{{ $loop->index * 100 }}">
-                        <i class="fas {{ $value['icon'] }} text-4xl text-primary mb-3"></i>
+                        <i class="fas {{ $value['icon'] ?? 'fa-check' }} text-4xl text-primary mb-3"></i>
                         <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $value['title'] }}</h3>
                         <p class="text-gray-500">{{ $value['description'] }}</p>
                     </div>

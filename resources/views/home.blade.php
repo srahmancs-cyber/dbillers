@@ -268,7 +268,7 @@
                 @foreach ($services as $service)
                     <div class="card" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
                         <div class="feature-icon mb-4">
-                            <i class="fas {{ $service['icon'] }} text-2xl"></i>
+                            <i class="fas {{ $service['icon'] ?? 'fa-circle' }} text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2">{{ $service['title'] }}</h3>
                         <p class="text-gray-500 text-sm mb-3">{{ $service['description'] }}</p>
@@ -295,7 +295,7 @@
                         @php $features = pageContent('home', 'medical_claims', 'metadata.features', []); @endphp
                         @foreach ($features as $feature)
                             <div class="feature-item">
-                                <i class="fas {{ $feature['icon'] }} text-primary text-xl"></i>
+                                <i class="fas {{ $feature['icon'] ?? 'fa-check' }} text-primary text-xl"></i>
                                 <div>
                                     <h4 class="font-bold">{{ $feature['title'] }}</h4>
                                     <p class="text-sm text-gray-500">{{ $feature['description'] }}</p>
@@ -383,7 +383,7 @@
                 @php $cards = pageContent('home', 'tech_expertise', 'metadata.cards', []); @endphp
                 @foreach ($cards as $card)
                     <div class="card text-center" data-aos="flip-left" data-aos-delay="{{ $loop->index * 100 }}">
-                        <i class="fas {{ $card['icon'] }} text-5xl text-primary mb-4"></i>
+                        <i class="fas {{ $card['icon'] ?? 'fa-star' }} text-5xl text-primary mb-4"></i>
                         <div class="stat-number">{{ $card['value'] }}</div>
                         <p class="font-semibold">{{ $card['title'] }}</p>
                         <p class="text-sm text-gray-500">{{ $card['description'] }}</p>
@@ -414,7 +414,7 @@
                 @php $features = pageContent('home', 'pricing_offer', 'metadata.features', []); @endphp
                 @foreach ($features as $feature)
                     <div class="card text-center" data-aos="zoom-in-up" data-aos-delay="{{ $loop->index * 100 }}">
-                        <i class="fas {{ $feature['icon'] }} text-3xl text-primary mb-3"></i>
+                        <i class="fas {{ $feature['icon'] ?? 'fa-check' }} text-3xl text-primary mb-3"></i>
                         <p class="font-semibold">{{ $feature['text'] }}</p>
                     </div>
                 @endforeach

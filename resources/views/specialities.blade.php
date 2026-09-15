@@ -98,7 +98,7 @@
                 @php $specialties = pageContent('specialities', 'popular_specialties', 'metadata.specialties', []); @endphp
                 @foreach ($specialties as $specialty)
                     <div class="spec-card" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 50 }}">
-                        <i class="fas {{ $specialty['icon'] }}"></i>
+                        <i class="fas {{ $specialty['icon'] ?? 'fa-stethoscope' }}"></i>
                         <h3>{{ $specialty['name'] }}</h3>
                     </div>
                 @endforeach

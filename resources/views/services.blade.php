@@ -44,7 +44,7 @@
                         {{-- RCM card: same structure, slight premium touch --}}
                         <div class="card" style="border-left: 3px solid #1A4F8B;" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
                             <div class="flex items-start justify-between mb-4">
-                                <i class="fas {{ $service['icon'] }} text-4xl text-primary"></i>
+                                <i class="fas {{ $service['icon'] ?? 'fa-circle' }} text-4xl text-primary"></i>
                                 <span style="font-size:.6875rem;font-weight:700;color:#1A4F8B;background:#dbeafe;padding:.2rem .6rem;border-radius:2rem;white-space:nowrap;">Featured</span>
                             </div>
                             <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $service['title'] }}</h3>
@@ -53,7 +53,7 @@
                         </div>
                     @else
                         <div class="card" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
-                            <i class="fas {{ $service['icon'] }} text-4xl text-primary mb-4"></i>
+                            <i class="fas {{ $service['icon'] ?? 'fa-circle' }} text-4xl text-primary mb-4"></i>
                             <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $service['title'] }}</h3>
                             <p class="text-gray-600 mb-3">{{ $service['description'] }}</p>
                             <a href="{{ $service['link'] }}" class="text-primary font-semibold hover:underline">Learn More <i class="fas fa-arrow-right"></i></a>
@@ -106,7 +106,7 @@
                 @php $features = pageContent('services', 'features', 'metadata.features', []); @endphp
                 @foreach ($features as $feature)
                     <div class="card text-center" data-aos="flip-up" data-aos-delay="{{ $loop->index * 100 }}">
-                        <i class="fas {{ $feature['icon'] }} text-4xl text-primary mb-3"></i>
+                        <i class="fas {{ $feature['icon'] ?? 'fa-check' }} text-4xl text-primary mb-3"></i>
                         <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $feature['title'] }}</h3>
                         <p class="text-gray-500 text-sm">{{ $feature['description'] }}</p>
                     </div>

@@ -182,7 +182,7 @@
             @php $pillars = pageContent('mbc','three_pillars','metadata.pillars',[]); @endphp
             @foreach($pillars as $i => $pillar)
                 <div class="mbc-pillar" data-aos="zoom-in" data-aos-delay="{{ $i * 100 }}">
-                    <div class="mbc-pillar-icon"><i class="fas {{ $pillar['icon'] }}"></i></div>
+                    <div class="mbc-pillar-icon"><i class="fas {{ $pillar['icon'] ?? 'fa-check' }}"></i></div>
                     <h3>{{ $pillar['title'] }}</h3>
                     <p>{{ $pillar['description'] }}</p>
                 </div>
@@ -229,7 +229,7 @@
             @php $offerings = pageContent('mbc','what_we_offer','metadata.offerings',[]); @endphp
             @foreach($offerings as $i => $offering)
                 <div class="mbc-offering" data-aos="zoom-in" data-aos-delay="{{ ($i%3)*100 }}">
-                    <div class="mbc-offering-icon"><i class="fas {{ $offering['icon'] }}"></i></div>
+                    <div class="mbc-offering-icon"><i class="fas {{ $offering['icon'] ?? 'fa-check' }}"></i></div>
                     <h3>{{ $offering['title'] }}</h3>
                     <ul>
                         @foreach($offering['items'] as $item)
@@ -254,7 +254,7 @@
             @php $services = pageContent('mbc','smart_billing','metadata.services',[]); @endphp
             @foreach($services as $i => $svc)
                 <div class="mbc-smart-card" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
-                    <i class="fas {{ $svc['icon'] }}"></i>
+                    <i class="fas {{ $svc['icon'] ?? 'fa-check' }}"></i>
                     <h3>{{ $svc['title'] }}</h3>
                     <p>{{ $svc['description'] }}</p>
                 </div>
@@ -302,7 +302,7 @@
             @php $benefits = pageContent('mbc','benefits','metadata.benefits',[]); @endphp
             @foreach($benefits as $i => $b)
                 <div class="mbc-benefit" data-aos="zoom-in" data-aos-delay="{{ ($i%3)*80 }}">
-                    <i class="fas {{ $b['icon'] }}"></i>
+                    <i class="fas {{ $b['icon'] ?? 'fa-check' }}"></i>
                     <h3>{{ $b['title'] }}</h3>
                     <p>{{ $b['description'] }}</p>
                 </div>
@@ -324,7 +324,7 @@
             @php $features = pageContent('mbc','coding_consultants','metadata.features',[]); @endphp
             @foreach($features as $i => $f)
                 <div class="mbc-coding-card" data-aos="flip-up" data-aos-delay="{{ $i*100 }}">
-                    <i class="fas {{ $f['icon'] }}"></i>
+                    <i class="fas {{ $f['icon'] ?? 'fa-check' }}"></i>
                     <h3>{{ $f['title'] }}</h3>
                     <p>{{ $f['description'] }}</p>
                 </div>
@@ -345,7 +345,7 @@
             @php $pfeatures = pageContent('mbc','partners','metadata.features',[]); @endphp
             @foreach($pfeatures as $i => $pf)
                 <div class="mbc-partner-card" data-aos="fade-up" data-aos-delay="{{ $i*100 }}">
-                    <i class="fas {{ $pf['icon'] }}"></i>
+                    <i class="fas {{ $pf['icon'] ?? 'fa-check' }}"></i>
                     <h3>{{ $pf['title'] }}</h3>
                     <p>{{ $pf['description'] }}</p>
                 </div>
