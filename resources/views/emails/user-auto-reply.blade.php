@@ -123,7 +123,7 @@
             <table class="steps-table" role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
                    style="margin-bottom:1.75rem;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;">
               <tr>
-                @foreach([['97.35%','Claim Approval'],['Up to 30%','Revenue Increase'],['1,500+','Providers Served']] as $i => $stat)
+                @foreach([['~97%','Claim Approval'],['Up to 30%','Revenue Increase'],['150+','Providers Served']] as $i => $stat)
                 <td class="step-col" align="center" valign="middle"
                     style="padding:1rem;{{ $i < 2 ? 'border-right:1px solid #e2e8f0;' : '' }}">
                   <div style="font-size:1.25rem;font-weight:800;color:#1A4F8B;line-height:1.2;">{{ $stat[0] }}</div>
@@ -216,7 +216,7 @@
           <td style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:.875rem 2rem;">
             <table class="trust-table" role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
               <tr>
-                <td align="center" style="font-size:.75rem;color:#64748b;padding:.25rem .5rem;">4.8 / 5 &nbsp;&nbsp; 350+ Verified Providers</td>
+                <td align="center" style="font-size:.75rem;color:#64748b;padding:.25rem .5rem;">Rated 4.8 / 5 &nbsp;&nbsp; Verified Providers</td>
                 <td align="center" style="font-size:.75rem;color:#64748b;padding:.25rem .5rem;">HIPAA Compliant</td>
                 <td align="center" style="font-size:.75rem;color:#64748b;padding:.25rem .5rem;">A+ BBB Rated</td>
               </tr>

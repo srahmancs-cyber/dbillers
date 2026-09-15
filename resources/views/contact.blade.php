@@ -344,7 +344,7 @@
                 <p>Our billing experts analyse your current revenue cycle in a free 30-minute call and show you exactly where money is being lost — and how to get it back.</p>
 
                 <div class="ct-trust-row">
-                    <span class="ct-trust-item"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.8/5 from 350+ providers</span>
+                    <span class="ct-trust-item"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> Rated 4.8/5 by Verified Providers</span>
                     <span class="ct-trust-item"><i class="fas fa-shield-halved"></i> HIPAA Compliant</span>
                     <span class="ct-trust-item"><i class="fas fa-check-circle"></i> Response within 24h</span>
                 </div>
@@ -352,7 +352,7 @@
             <div class="hidden md:block">
                 {{-- decorative stats --}}
                 <div class="grid grid-cols-2 gap-4">
-                    @foreach([['97.35%','Claim Approval Rate'],['Up to 30%','Revenue Increase'],['99%','Clean Claim Ratio'],['24/7','Expert Support']] as $stat)
+                    @foreach([['~97%','Claim Approval Rate'],['Up to 30%','Revenue Increase'],['99%','Clean Claim Ratio'],['24/7','Expert Support']] as $stat)
                     <div style="background:rgba(255,255,255,.12);border-radius:.875rem;padding:1.25rem;text-align:center;">
                         <div style="font-size:1.625rem;font-weight:800;color:#fff;line-height:1.2;">{{ $stat[0] }}</div>
                         <div style="font-size:.75rem;color:rgba(255,255,255,.75);margin-top:.25rem;">{{ $stat[1] }}</div>

@@ -395,7 +395,7 @@
         <div class="section-headline">
             <h2>{{ pageContent('rcm', 'roi_case_study', 'title', 'RCM ROI Case Study') }}</h2>
             <div class="underline"></div>
-            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Up To 30% Revenue Increase In Next 12 Months With DBillers' Medical Revenue Service</p>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Significant Revenue Improvement In Next 12 Months With DBillers' Medical Revenue Service</p>
         </div>
 
         <div class="rcm-roi-table-wrap mb-8">

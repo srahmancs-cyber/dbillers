@@ -208,7 +208,7 @@
             {{-- Trust --}}
             <div class="ty-trust">
                 <span class="ty-trust-item"><i class="fas fa-shield-halved" style="color:#1A4F8B;"></i> HIPAA Compliant</span>
-                <span class="ty-trust-item"><i class="fas fa-star" style="color:#fbbf24;"></i> 4.8/5 from 350+ providers</span>
+                <span class="ty-trust-item"><i class="fas fa-star" style="color:#fbbf24;"></i> Rated 4.8/5 by Verified Providers</span>
                 <span class="ty-trust-item"><i class="fas fa-lock" style="color:#1A4F8B;"></i> Your data is never shared</span>
             </div>
 
