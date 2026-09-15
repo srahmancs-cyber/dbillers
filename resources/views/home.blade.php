@@ -216,7 +216,7 @@
                         @php $buttons = pageContent('home', 'hero', 'metadata.buttons', []); @endphp
                         @foreach ($buttons as $button)
                             <a href="{{ $button['url'] }}" class="{{ $loop->first ? 'btn-hero-primary' : 'btn-hero-secondary' }}">
-                                {{ $button['text'] }} <i class="fas {{ $button['icon'] }}"></i>
+                                {{ $button['text'] }} <i class="fas {{ $button['icon'] ?? 'fa-arrow-right' }}"></i>
                             </a>
                         @endforeach
                     </div>

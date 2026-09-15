@@ -135,8 +135,12 @@ class ManageHomePage extends Page implements HasForms
                 Forms\Components\TextInput::make("{$key}.metadata.buttons.{$index}.url")
                     ->label('Button URL')
                     ->helperText('Example: /contact'),
+                Forms\Components\TextInput::make("{$key}.metadata.buttons.{$index}.icon")
+                    ->label('Icon class')
+                    ->helperText('FontAwesome icon suffix — e.g. fa-arrow-right')
+                    ->placeholder('fa-arrow-right'),
             ])
-            ->columns(2);
+            ->columns(3);
     }
 
     // ── Main form ─────────────────────────────────────────────────
