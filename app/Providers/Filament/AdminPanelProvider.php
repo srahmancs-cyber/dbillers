@@ -37,8 +37,8 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->navigationGroups([
-                NavigationGroup::make('Page Content')->icon('heroicon-o-document-duplicate'),
-                NavigationGroup::make('Settings')->icon('heroicon-o-cog-6-tooth')->collapsed(),
+                NavigationGroup::make('Page Content'),
+                NavigationGroup::make('Settings')->collapsed(),
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
